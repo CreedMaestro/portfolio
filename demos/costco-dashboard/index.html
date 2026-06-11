@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Costco Portfolio Dashboard Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0e11;
+      --card-bg: rgba(23, 27, 34, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --primary: #78dc77;
+      --primary-glow: rgba(120, 220, 119, 0.2);
+      --secondary: #38bdf8;
+      --accent: #f43f5e;
+      --sidebar-bg: #111827;
+      --warn: #f59e0b;
+      --violet: #c084fc;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      background-color: var(--bg-color);
+      background-image: radial-gradient(circle at 50% -20%, #1e293b 0%, var(--bg-color) 80%);
+      color: var(--text-primary);
+      font-family: "Inter", "Pretendard", sans-serif;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      letter-spacing: 0;
+    }
+    h1, h2, h3, .logo, .purchase-screen .page-title, .purchase-screen .sc-value {
+      font-family: "Outfit", "Pretendard", sans-serif;
+    }
+    button, input, select { font: inherit; }
+
+    aside {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--card-border);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--primary); }
+    .nav-group { margin-bottom: 32px; }
+    .nav-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #4b5563;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      margin-left: 12px;
+    }
+    .nav-item {
+      padding: 12px 16px;
+      margin-bottom: 4px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      border: 0;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+    }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.03); color: #fff; }
+    .nav-item.active { background: rgba(120, 220, 119, 0.1); color: var(--primary); }
+    .agent-status {
+      margin-top: auto;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+    }
+    .agent { display: flex; align-items: center; margin-bottom: 12px; font-size: 13px; color: #9ca3af; }
+    .led {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--primary);
+      margin-right: 10px;
+      box-shadow: 0 0 10px var(--primary);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+    main { flex: 1; padding: 40px; overflow-y: auto; background: transparent; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; gap: 20px; }
+    h1 { font-size: 28px; font-weight: 700; margin: 0; letter-spacing: -0.5px; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .root-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .root-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.15); }
+    .card-full { grid-column: span 2; }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 0;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .item-list { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .item-list th {
+      text-align: left;
+      color: #64748b;
+      padding: 0 14px 16px 0;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+    .item-list td {
+      padding: 20px 14px 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      font-size: 14px;
+      vertical-align: middle;
+    }
+    .item-list tr:last-child td { border-bottom: none; }
+    .table-scroll { width: 100%; overflow-x: auto; }
+    .badge { background: rgba(255, 255, 255, 0.05); padding: 4px 8px; border-radius: 6px; font-size: 11px; color: #94a3b8; font-weight: 500; }
+    .source-tag { background: rgba(56, 189, 248, 0.1); color: var(--secondary); padding: 4px 10px; border-radius: 8px; font-weight: 600; font-size: 11px; display: inline-block; }
+    .score-badge {
+      background: rgba(120, 220, 119, 0.15);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid rgba(120, 220, 119, 0.3);
+      display: inline-block;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; display: inline-block; }
+    .tag-home { background: rgba(56, 189, 248, 0.15); color: var(--secondary); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-rocket { background: rgba(244, 63, 94, 0.15); color: var(--accent); border: 1px solid rgba(244, 63, 94, 0.3); }
+    .profit-box { background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 10px; border-radius: 12px; font-size: 12px; }
+    .profit-val { font-size: 14px; font-weight: 700; color: var(--primary); }
+    .filter-tab {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.2s;
+      border: 0;
+      background: transparent;
+    }
+    .filter-tab:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .filter-tab.active { background: var(--primary); color: #000; font-weight: 700; }
+    .filter-panel {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: -10px 0 18px;
+      padding: 12px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+    }
+    .filter-panel.open { display: flex; }
+    .filter-label { color: var(--text-secondary); font-size: 12px; font-weight: 700; margin-right: 4px; }
+    .cat-chip {
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .cat-chip:hover { color: #fff; border-color: rgba(120,220,119,0.35); }
+    .cat-chip.active { background: rgba(120,220,119,0.14); border-color: rgba(120,220,119,0.42); color: var(--primary); }
+    .img-thumb-lg { width: 128px; height: 128px; object-fit: cover; border-radius: 12px; background: linear-gradient(135deg, rgba(120,220,119,.2), rgba(56,189,248,.18)); border: 1px solid var(--card-border); }
+    .img-thumb-md { width: 108px; height: 108px; object-fit: cover; border-radius: 12px; background: linear-gradient(135deg, rgba(120,220,119,.2), rgba(56,189,248,.18)); border: 1px solid var(--card-border); }
+    .cell-name { font-weight: 600; }
+    .cell-name-lg { font-weight: 600; font-size: 15px; }
+    .cell-id { font-size: 12px; color: var(--text-secondary); }
+    .cell-id-xs { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+    .cell-price-online { color: var(--text-secondary); }
+    .cell-price-offline { font-weight: 700; }
+    .cell-diff { color: var(--secondary); font-weight: 700; }
+    .cell-promo { color: var(--accent); font-weight: 600; font-size: 13px; }
+    .disc-high { color: var(--accent); font-weight: 800; }
+    .disc-high-lg { color: var(--accent); font-weight: 800; font-size: 15px; }
+    .cat1-label { font-size: 12px; font-weight: 700; color: var(--primary); }
+    .cat2-label { font-size: 11px; color: var(--text-secondary); }
+    .price-label-sm { font-size: 12px; color: var(--text-secondary); }
+    .price-val-sm { font-size: 12px; font-weight: 600; color: #fff; }
+    .action-btn {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--secondary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .sheet-btn {
+      background: none;
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .toolbar-like {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+    }
+
+    .purchase-screen {
+      --p-bg: #0b0e11;
+      --p-card: rgba(23,27,34,0.85);
+      --p-border: rgba(255,255,255,0.08);
+      --p-primary: #78dc77;
+      --p-primary-g: rgba(120,220,119,0.15);
+      --p-secondary: #38bdf8;
+      --p-accent: #f43f5e;
+      --p-warn: #f59e0b;
+      --p-text1: #ffffff;
+      --p-text2: #94a3b8;
+      --p-text3: #4b5563;
+    }
+    .purchase-screen .page { max-width: 1400px; margin: 0 auto; padding: 0 0 24px; }
+    .purchase-screen .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .purchase-screen .page-title { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .purchase-screen .status-bar { font-size: 12px; color: var(--p-text3); margin-top: 8px; }
+    .purchase-screen .controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .purchase-screen .btn-refresh,
+    .purchase-screen .btn-reparse,
+    .purchase-screen .btn-sync {
+      background: var(--p-card);
+      color: #fff;
+      border: 1px solid var(--p-border);
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: .2s;
+    }
+    .purchase-screen .btn-reparse { background: rgba(56,189,248,0.1); color: var(--p-secondary); border-color: rgba(56,189,248,0.3); }
+    .purchase-screen .btn-sync { background: rgba(244,63,94,0.12); color: #fb7185; border-color: rgba(244,63,94,0.3); }
+    .purchase-screen .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 28px; }
+    .purchase-screen .summary-card {
+      background: var(--p-card);
+      border: 1px solid var(--p-border);
+      border-radius: 18px;
+      padding: 22px 24px;
+      backdrop-filter: blur(10px);
+      transition: transform .2s;
+    }
+    .purchase-screen .summary-card:hover { transform: translateY(-3px); }
+    .purchase-screen .sc-label { font-size: 11px; color: var(--p-text3); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; }
+    .purchase-screen .sc-value { font-size: 26px; font-weight: 700; }
+    .purchase-screen .sc-sub { font-size: 12px; color: var(--p-text2); margin-top: 4px; }
+    .purchase-screen .col-green { color: var(--p-primary); }
+    .purchase-screen .col-red { color: var(--p-accent); }
+    .purchase-screen .col-blue { color: var(--p-secondary); }
+    .purchase-screen .col-warn { color: var(--p-warn); }
+    .purchase-screen .card {
+      background: var(--p-card);
+      border: 1px solid var(--p-border);
+      border-radius: 20px;
+      padding: 24px 28px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+    }
+    .purchase-screen .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+    .purchase-screen .card-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .purchase-screen .tab-bar { display: flex; gap: 6px; margin-bottom: 20px; background: rgba(255,255,255,0.03); padding: 4px; border-radius: 12px; width: fit-content; }
+    .purchase-screen .tab-btn { padding: 8px 18px; border-radius: 9px; border: none; background: transparent; color: var(--p-text2); font-size: 13px; font-weight: 600; cursor: pointer; }
+    .purchase-screen .tab-btn.active { background: rgba(120,220,119,0.12); color: var(--p-primary); }
+    .purchase-screen .tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+    .purchase-screen .tbl th { color: var(--p-text3); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .6px; padding: 0 12px 14px 0; border-bottom: 1px solid var(--p-border); text-align: left; white-space: nowrap; }
+    .purchase-screen .tbl td { padding: 14px 12px 14px 0; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: middle; }
+    .purchase-screen .tag-type, .purchase-screen .margin-chip, .sales-screen .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .purchase-screen .tag-profit { background: rgba(120,220,119,0.12); color: var(--p-primary); }
+    .purchase-screen .tag-loss { background: rgba(244,63,94,0.12); color: var(--p-accent); }
+    .purchase-screen .tag-nodata { background: rgba(255,255,255,0.05); color: var(--p-text3); }
+    .purchase-screen .coupang-logo { font-size: 11px; background: rgba(244,63,94,0.1); color: #fb7185; border: 1px solid rgba(244,63,94,0.25); padding: 3px 9px; border-radius: 5px; font-weight: 700; letter-spacing: .5px; }
+    .purchase-screen .coupang-logo.growth { background: rgba(120,220,119,0.1); color: var(--p-primary); border-color: rgba(120,220,119,0.25); }
+    .purchase-screen .cq-tab-group { display: flex; gap: 4px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 3px; }
+    .purchase-screen .cq-tab { padding: 4px 14px; border-radius: 6px; border: none; background: transparent; color: var(--p-text3); font-size: 12px; font-weight: 700; cursor: pointer; letter-spacing: .5px; }
+    .purchase-screen .cq-tab.active-wing { background: rgba(244,63,94,0.2); color: #fb7185; }
+    .purchase-screen .cq-tab.active-growth { background: rgba(120,220,119,0.2); color: var(--p-primary); }
+    .purchase-screen .cq-name, .purchase-screen .cq-option { white-space: normal; overflow-wrap: anywhere; word-break: keep-all; line-height: 1.45; }
+    .purchase-screen .cq-name { font-weight: 500; font-size: 13px; }
+    .purchase-screen .cq-option { color: var(--p-text2); font-size: 12px; }
+    .purchase-screen .cq-price-cell, .purchase-screen .cq-number-cell { white-space: nowrap; font-family: "Outfit", sans-serif; font-weight: 600; }
+    .purchase-screen .code-badge { background: rgba(255,255,255,0.05); color: var(--p-text2); padding: 3px 8px; border-radius: 5px; font-size: 11px; font-family: monospace; }
+    .purchase-screen .rg-stock-pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+    .purchase-screen .rg-stock-pill.in-stock { background: rgba(120,220,119,0.15); color: var(--p-primary); }
+    .purchase-screen .rg-stock-pill.no-stock { background: rgba(244,63,94,0.1); color: var(--p-accent); }
+    .purchase-screen .inbound-pill { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 700; white-space: nowrap; background: rgba(234,179,8,0.14); color: #eab308; }
+
+    .sales-screen {
+      --s-bg: #101418;
+      --s-panel: #151b21;
+      --s-panel-2: #1b232b;
+      --s-line: rgba(255,255,255,0.08);
+      --s-text: #eef4f8;
+      --s-muted: #9aa8b2;
+      --s-soft: #6f7e89;
+      --s-green: #78dc77;
+      --s-blue: #38bdf8;
+      --s-amber: #f5b84b;
+      --s-red: #fb7185;
+      --s-violet: #c084fc;
+      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+    }
+    .sales-screen .page { width: min(1500px, 100%); margin: 0 auto; padding: 0 0 42px; }
+    .sales-screen .page-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+    .sales-screen .title { font-size: clamp(24px, 3vw, 34px); line-height: 1.15; font-weight: 800; }
+    .sales-screen .status { margin-top: 8px; color: var(--s-muted); font-size: 13px; }
+    .sales-screen .controls { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .sales-screen .btn {
+      min-height: 36px;
+      border: 1px solid var(--s-line);
+      border-radius: 8px;
+      padding: 7px 11px;
+      background: var(--s-panel-2);
+      color: var(--s-text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .sales-screen .btn.active { background: rgba(120,220,119,0.16); border-color: rgba(120,220,119,0.38); color: var(--s-green); }
+    .sales-screen .date-input {
+      min-height: 36px;
+      border: 1px solid var(--s-line);
+      border-radius: 8px;
+      padding: 7px 10px;
+      background: var(--s-panel-2);
+      color: var(--s-text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .sales-screen .date-sep { color: var(--s-muted); font-weight: 800; }
+    .sales-screen .summary-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .sales-screen .summary-card { min-width: 0; min-height: 112px; border: 1px solid var(--s-line); border-radius: 8px; background: var(--s-panel); padding: 15px; }
+    .sales-screen .label { color: var(--s-muted); font-size: 12px; font-weight: 800; }
+    .sales-screen .value { margin-top: 10px; font-size: clamp(21px, 2.1vw, 29px); line-height: 1.05; font-weight: 850; overflow-wrap: anywhere; }
+    .sales-screen .sub { margin-top: 8px; color: var(--s-soft); font-size: 12px; line-height: 1.35; }
+    .sales-screen .panel { border: 1px solid var(--s-line); border-radius: 8px; background: var(--s-panel); overflow: hidden; margin-bottom: 14px; }
+    .sales-screen .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px; border-bottom: 1px solid var(--s-line); }
+    .sales-screen .panel-title { font-size: 16px; font-weight: 850; }
+    .sales-screen .trend-chart { position: relative; min-height: 310px; padding: 16px; }
+    .sales-screen .chart-svg { display: block; width: 100%; height: 280px; }
+    .sales-screen .legend { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; color: var(--s-muted); font-size: 12px; font-weight: 700; }
+    .sales-screen .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .sales-screen .legend-line { width: 18px; height: 3px; border-radius: 999px; display: inline-block; }
+    .sales-screen .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .sales-screen .table-wrap { width: 100%; overflow-x: auto; }
+    .sales-screen table { width: 100%; min-width: 1450px; border-collapse: collapse; table-layout: fixed; }
+    .sales-screen th, .sales-screen td { padding: 10px 8px; border-bottom: 1px solid var(--s-line); text-align: left; vertical-align: middle; }
+    .sales-screen th { color: var(--s-muted); font-size: 11px; font-weight: 850; }
+    .sales-screen .sort-btn { border: 0; background: transparent; color: inherit; font-weight: 850; cursor: pointer; padding: 0; }
+    .sales-screen .sort-btn.active { color: var(--s-blue); }
+    .sales-screen .name { font-weight: 800; line-height: 1.35; }
+    .sales-screen .option { margin-top: 4px; color: var(--s-soft); font-size: 12px; }
+    .sales-screen .num { font-weight: 800; white-space: nowrap; }
+    .sales-screen .positive { color: var(--s-green); }
+    .sales-screen .negative { color: var(--s-red); }
+    .sales-screen .muted { color: var(--s-soft); }
+    .sales-screen .badge.wing { background: rgba(251,113,133,0.13); color: var(--s-red); }
+    .sales-screen .badge.growth { background: rgba(120,220,119,0.13); color: var(--s-green); }
+    .sales-screen .badge.good { background: rgba(120,220,119,0.13); color: var(--s-green); }
+    .sales-screen .badge.warn { background: rgba(245,184,75,0.13); color: var(--s-amber); }
+    .sales-screen .badge.bad { background: rgba(251,113,133,0.13); color: var(--s-red); }
+
+    .public-note {
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      line-height: 1.55;
+      font-size: 13px;
+    }
+    .public-note strong { color: #fff; }
+    .private-dummy { color: var(--warn); }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+    @media (max-width: 1100px) {
+      body { display: block; height: auto; overflow: auto; }
+      aside { width: auto; min-height: auto; }
+      main { padding: 24px; overflow: visible; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .card-full { grid-column: auto; }
+      .purchase-screen .summary-grid, .sales-screen .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sales-screen .page-header, .purchase-screen .page-header, header { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="logo">Antig<span>ravity</span></div>
+    <div class="nav-group">
+      <div class="nav-label">메인 메뉴</div>
+      <button class="nav-item active" type="button" data-view-target="dashboard">🏠 <span>대시보드</span></button>
+      <button class="nav-item" type="button" data-view-target="online">🚀 <span>온라인 소싱</span></button>
+      <button class="nav-item" type="button" data-view-target="offline">🛒 <span>오프라인 소싱</span></button>
+      <button class="nav-item" type="button" data-view-target="purchase">📊 <span>매입 포트폴리오</span></button>
+      <button class="nav-item" type="button" data-view-target="sales">📈 <span>매출 포트폴리오</span></button>
+    </div>
+    <div class="agent-status">
+      <div class="nav-label" style="margin-left:0; margin-bottom:16px">공개 버전</div>
+      <div class="agent"><div class="led"></div>더미 포트폴리오</div>
+      <div class="agent"><div class="led"></div>실사용 시트 제한</div>
+      <div class="agent"><div class="led"></div>개인 판매 데이터 비식별</div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="view active" id="dashboard">
+      <header>
+        <div>
+          <h1>Antigravity 코스트코 운영 대시보드</h1>
+          <div style="margin-top:8px;color:var(--text-secondary);font-size:13px">실사용 구조 설명용 공개 목업 / 개인 판매 데이터는 더미 처리</div>
+        </div>
+        <button class="sheet-btn js-restricted" type="button">☁️ 구글 시트 동기화</button>
+      </header>
+
+      <div class="dashboard-grid">
+        <div class="root-card">
+          <h2><span>🚀 온라인 소싱</span><span class="source-tag">공개 가격 데이터</span></h2>
+          <table class="item-list">
+            <tbody>
+              <tr>
+                <td><div class="cell-name">커클랜드 시그니처 그래놀라바</div><div class="price-label-sm">온라인 할인 후보</div></td>
+                <td><span class="score-badge">91</span></td>
+                <td><span class="disc-high">18.4%</span></td>
+              </tr>
+              <tr>
+                <td><div class="cell-name">센트룸 멀티비타민 패밀리팩</div><div class="price-label-sm">로켓그로스 검토</div></td>
+                <td><span class="score-badge">88</span></td>
+                <td><span class="disc-high">14.7%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="root-card">
+          <h2><span>🛒 오프라인 소싱</span><span class="source-tag">매장가 비교</span></h2>
+          <table class="item-list">
+            <tbody>
+              <tr>
+                <td><div class="cell-name">오메가3 대용량 캡슐</div><div class="price-label-sm">행사기간 2026-06-10 ~ 2026-06-16</div></td>
+                <td class="cell-price-online">42,500원</td>
+                <td class="cell-price-offline">35,900원</td>
+              </tr>
+              <tr>
+                <td><div class="cell-name">주방타월 대용량 팩</div><div class="price-label-sm">행사기간 2026-06-13 ~ 2026-06-27</div></td>
+                <td class="cell-price-online">39,800원</td>
+                <td class="cell-price-offline">36,200원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="root-card card-full">
+          <h2><span>운영 연결 구조</span><button class="sheet-btn js-restricted" type="button">📊 시트 열기</button></h2>
+          <div class="public-note" style="margin-bottom:0">
+            월요일과 목요일 크롤링으로 온라인/오프라인 후보 데이터를 갱신하고, Google Sheets의 후보·비교 탭과 대시보드 데이터 스냅샷을 함께 갱신합니다.
+            매입/매출 포트폴리오는 그 다음 단계에서 개인 판매 데이터와 연결되므로 공개 목업에서는 상품명, 판매가, 매입가, BEP, 30일 매출 같은 개인 운영 수치를 더미로 표시합니다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="online">
+      <header>
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <h1>🚀 온라인 소싱 (Online Sourcing)</h1>
+          <span style="background:rgba(56,189,248,0.1);color:var(--secondary);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid rgba(56,189,248,0.3)">고가치 온라인 상품 자동 선별</span>
+        </div>
+      </header>
+      <div class="toolbar-like">
+        <div style="display:flex;gap:8px;background:rgba(0,0,0,0.2);padding:4px;border-radius:12px">
+          <button class="filter-tab active" type="button" data-online-cat="all">전체</button>
+          <button class="filter-tab" type="button" data-online-cat="food">🍎 식품</button>
+          <button class="filter-tab" type="button" data-online-cat="nonfood">💄 비식품</button>
+        </div>
+        <input type="text" placeholder="상품명 검색..." style="background:rgba(255,255,255,0.05);border:1px solid var(--card-border);color:#fff;padding:8px 14px;border-radius:10px;font-size:13px;width:180px">
+        <select style="background:rgba(255,255,255,0.05);border:1px solid var(--card-border);color:#fff;padding:8px 14px;border-radius:10px;font-size:13px">
+          <option>모든 태그</option>
+          <option>로켓그로스 추천</option>
+          <option>재택소싱 가능</option>
+        </select>
+      </div>
+      <div class="filter-panel" id="online-cat2-panel">
+        <span class="filter-label">상세 카테고리</span>
+        <div id="online-cat2-options" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      </div>
+      <div class="root-card card-full">
+        <h2><span>💎 소싱 가치 선별 리스트</span><button class="sheet-btn js-restricted" type="button">📊 시트 열기</button></h2>
+        <div class="table-scroll">
+          <table class="item-list">
+            <thead>
+              <tr>
+                <th>이미지</th>
+                <th>상품 정보</th>
+                <th>분류</th>
+                <th>소싱 점수</th>
+                <th>가격 비교 (온/오프)</th>
+                <th>수익 시뮬레이션</th>
+                <th>할인율</th>
+                <th>이동</th>
+              </tr>
+            </thead>
+            <tbody id="online-sourcing-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="offline">
+      <header>
+        <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap">
+          <h1>🛒 오프라인 소싱 (Offline Sourcing)</h1>
+          <button class="sheet-btn js-restricted" type="button">📊 Google Sheets</button>
+        </div>
+        <div style="background:var(--primary-glow);color:var(--primary);padding:8px 20px;border-radius:120px;font-size:13px;font-weight:600;border:1px solid rgba(120,220,119,0.3)">🔥 오프라인이 더 저렴한 전략 품목</div>
+      </header>
+      <div class="root-card card-full">
+        <h2>
+          <span>📦 추천 소싱 목록</span>
+          <span style="font-size:12px;color:var(--text-secondary);font-weight:400">온라인 대비 가격 우위 품목</span>
+          <button class="sheet-btn" id="offline-category-toggle" type="button">카테고리</button>
+        </h2>
+        <div class="filter-panel" id="offline-category-panel">
+          <span class="filter-label">카테고리</span>
+          <div id="offline-category-options" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+        <div class="table-scroll">
+          <table class="item-list">
+            <thead>
+              <tr>
+                <th>이미지</th>
+                <th>상품 정보</th>
+                <th>카테고리</th>
+                <th>온라인가</th>
+                <th>오프라인가</th>
+                <th>할인율</th>
+                <th>예상이익</th>
+                <th>행사기간</th>
+              </tr>
+            </thead>
+            <tbody id="offline-sourcing-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="view purchase-screen" id="purchase">
+      <div class="page">
+        <div class="page-header">
+          <div>
+            <div class="page-title">📦 매입 포트폴리오</div>
+            <div class="status-bar">공개 목업: 개인 판매 상품명과 운영 수치 더미 처리</div>
+          </div>
+          <div class="controls">
+            <button class="btn-refresh js-restricted" type="button">📈 매출</button>
+            <button class="btn-reparse js-restricted" type="button">🧾 영수증</button>
+            <button class="btn-sync js-restricted" type="button">🛒 동기화</button>
+            <button class="btn-refresh js-restricted" type="button">📦 입고</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card"><div class="sc-label">총 매입 (소계)</div><div class="sc-value" style="color:#94a3b8">₩4,280,000</div><div class="sc-sub">더미 구매 36건</div></div>
+          <div class="summary-card"><div class="sc-label">실 매입 (구매가)</div><div class="sc-value col-green">₩3,940,000</div><div class="sc-sub">쿠폰 반영 후</div></div>
+          <div class="summary-card"><div class="sc-label">예상 매출</div><div class="sc-value col-blue">₩5,620,000</div><div class="sc-sub">판매가 더미 기준</div></div>
+          <div class="summary-card"><div class="sc-label">예상 이익</div><div class="sc-value col-green">₩712,000</div><div class="sc-sub">BEP 더미 기준</div></div>
+          <div class="summary-card"><div class="sc-label">확인 필요</div><div class="sc-value col-warn">4</div><div class="sc-sub">입고/매핑 점검</div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🛒 쿠팡 판매 현황 <span class="coupang-logo" id="cq-mode-label">WING</span></span>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <div class="cq-tab-group">
+                <button class="cq-tab active-wing" id="cq-tab-wing" type="button" onclick="setPurchaseTab('wing')">WING</button>
+                <button class="cq-tab" id="cq-tab-growth" type="button" onclick="setPurchaseTab('growth')">GROWTH</button>
+              </div>
+              <button class="btn-sync js-restricted" type="button">동기화</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="tbl" id="purchase-wing-table">
+              <thead>
+                <tr>
+                  <th>상품명</th><th>수익성</th><th>마진율</th><th>마진액</th><th>판매가</th><th>매입가</th><th>BEP</th><th>30일 판매</th><th>30일 매출</th><th>옵션</th><th>옵션ID</th>
+                </tr>
+              </thead>
+              <tbody id="purchase-wing-body"></tbody>
+            </table>
+            <table class="tbl" id="purchase-growth-table" style="display:none;min-width:1380px">
+              <thead>
+                <tr>
+                  <th>상품명</th><th>수익성</th><th>마진율</th><th>마진액</th><th>판매가</th><th>매입가</th><th>BEP</th><th>30일 판매</th><th>30일 매출</th><th>재고</th><th>입고</th><th>옵션</th><th>옵션ID</th>
+                </tr>
+              </thead>
+              <tbody id="purchase-growth-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="card-title">📋 매입 상세</span><button class="btn-refresh js-restricted" type="button">코스트코 매입 이력</button></div>
+          <div style="overflow-x:auto">
+            <table class="tbl">
+              <thead>
+                <tr><th>날짜</th><th>상품명</th><th>코드</th><th>카테고리</th><th>수량</th><th>단가</th><th>소계</th><th>할인코드</th><th>구매가</th><th>확인필요</th><th>유형</th></tr>
+              </thead>
+              <tbody id="purchase-detail-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view sales-screen" id="sales">
+      <div class="page">
+        <div class="page-header">
+          <div>
+            <div class="title">매출 포트폴리오</div>
+            <div class="status">공개 목업: 판매 상품명, 판매가, 매입가, BEP, 매출액 더미 처리</div>
+          </div>
+          <div class="controls">
+            <input class="date-input" id="sales-start-date" type="date" value="2026-06-01" aria-label="매출 시작일">
+            <span class="date-sep">~</span>
+            <input class="date-input" id="sales-end-date" type="date" value="2026-06-16" aria-label="매출 종료일">
+            <button class="btn active" id="sales-date-apply" type="button">기간 적용</button>
+            <button class="btn js-restricted" type="button">매입</button>
+            <button class="btn js-restricted" type="button">전체 동기화</button>
+          </div>
+        </div>
+
+        <section class="summary-grid" aria-label="매출 요약">
+          <div class="summary-card"><div class="label">해당 기간 매출</div><div class="value" id="sales-summary-revenue">₩0</div><div class="sub" id="sales-summary-range">더미 일별 매출 합계</div></div>
+          <div class="summary-card"><div class="label">판매수량</div><div class="value" id="sales-summary-units">0개</div><div class="sub">Wing + Growth</div></div>
+          <div class="summary-card"><div class="label">예상 매출총이익</div><div class="value positive" id="sales-summary-profit">₩0</div><div class="sub">더미 BEP 기준</div></div>
+          <div class="summary-card"><div class="label">평균 마진율</div><div class="value" id="sales-summary-margin">0%</div><div class="sub">더미 판매가 기준</div></div>
+          <div class="summary-card"><div class="label">상품/옵션수</div><div class="value" id="sales-summary-count">0</div><div class="sub">공개 표시용</div></div>
+          <div class="summary-card"><div class="label">재고 위험 / 지연</div><div class="value negative" id="sales-summary-risk">0</div><div class="sub">운영 확인 대상</div></div>
+        </section>
+
+        <section class="panel trend-panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">판매량 & 매출 트렌드</div>
+              <div class="status" id="sales-chart-status">주문 API 기준 일별 집계 더미</div>
+            </div>
+            <div class="toolbar">
+              <button class="btn active" type="button" data-sales-range="30">30일</button>
+              <button class="btn" type="button" data-sales-range="14">14일</button>
+              <button class="btn" type="button" data-sales-range="7">7일</button>
+              <button class="btn" type="button">WING</button>
+              <button class="btn" type="button">GROWTH</button>
+              <button class="btn js-restricted" type="button">차트 동기화</button>
+              <button class="btn js-restricted" type="button">보정</button>
+            </div>
+          </div>
+          <div class="trend-chart">
+            <div class="legend">
+              <span class="legend-item"><span class="legend-line" style="background:#f5b84b"></span>판매량</span>
+              <span class="legend-item"><span class="legend-line" style="background:#38bdf8"></span>매출</span>
+            </div>
+            <svg class="chart-svg" id="sales-trend-svg" viewBox="0 0 900 280" role="img" aria-label="일별 판매량과 매출 트렌드"></svg>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">상품별 매출</div>
+              <div class="status" id="sales-table-status">더미 상품 / 개인 판매 데이터 비식별</div>
+            </div>
+            <div class="toolbar">
+              <button class="btn active" type="button">전체</button>
+              <button class="btn" type="button">WING</button>
+              <button class="btn" type="button">GROWTH</button>
+              <input class="search" type="search" placeholder="상품명, 옵션, 옵션ID 검색" style="min-height:36px;border:1px solid var(--s-line);border-radius:8px;background:var(--s-panel-2);color:var(--s-text);padding:7px 11px">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th><button class="sort-btn">상품명</button></th><th><button class="sort-btn">채널</button></th><th><button class="sort-btn">수익성</button></th><th><button class="sort-btn">현재가</button></th><th><button class="sort-btn">실판매가</button></th><th><button class="sort-btn">매입가</button></th><th><button class="sort-btn">BEP</button></th><th><button class="sort-btn">마진액</button></th><th><button class="sort-btn">마진율</button></th><th><button class="sort-btn">30일 판매</button></th><th><button class="sort-btn active">30일 매출</button></th><th><button class="sort-btn">예상 이익</button></th><th><button class="sort-btn">재고</button></th><th><button class="sort-btn">입고</button></th><th>옵션ID</th>
+                </tr>
+              </thead>
+              <tbody id="sales-product-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./public-sourcing-data.js"></script>
+  <script>
+    const restrictedMessage = "클릭시 해당 시트로 이동합니다.(공개버전 제한)";
+    const syncRestrictedMessage = "공개버전 제한된 기능입니다.";
+    const sourcingData = window.COSTCO_PUBLIC_SOURCING_DATA || { online: [], offline: [] };
+    const sourcingState = {
+      onlineCat: "all",
+      onlineCat2: "all",
+      offlineCategory: "all",
+      offlinePanelOpen: false
+    };
+    const fmtWon = (value) => `₩${Math.round(value || 0).toLocaleString("ko-KR")}`;
+    const fmtPlainWon = (value) => `${Math.round(value || 0).toLocaleString("ko-KR")}원`;
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+
+    const purchaseWingItems = Array.from({ length: 12 }, (_, index) => {
+      const salePrice = 31900 + index * 2300;
+      const cost = 21800 + index * 1700;
+      const bep = cost + 3200 + (index % 4) * 550;
+      const units = 7 + ((index * 5) % 31);
+      return {
+        name: `더미 판매상품 W-${String(index + 1).padStart(2, "0")}`,
+        status: salePrice > bep + 2200 ? "수익" : "점검",
+        option: index % 3 === 0 ? "세트 옵션" : "기본 옵션",
+        id: `DM-W${String(index + 1).padStart(2, "0")}`,
+        salePrice, cost, bep, units
+      };
+    });
+
+    const purchaseGrowthItems = Array.from({ length: 12 }, (_, index) => {
+      const salePrice = 38900 + index * 3100;
+      const cost = 27100 + index * 2300;
+      const bep = cost + 3900 + (index % 5) * 700;
+      const units = 5 + ((index * 7) % 34);
+      return {
+        name: `더미 판매상품 G-${String(index + 1).padStart(2, "0")}`,
+        status: salePrice > bep + 3000 ? "핵심" : "재고 위험",
+        option: index % 4 === 0 ? "묶음 옵션" : "기본 옵션",
+        id: `DM-G${String(index + 1).padStart(2, "0")}`,
+        salePrice, cost, bep, units,
+        stock: index % 5 === 0 ? 0 : 4 + ((index * 3) % 18),
+        inbound: index % 5 === 0 ? "미확인 2" : `입고중 ${2 + (index % 7)}`
+      };
+    });
+
+    const purchaseDetailItems = Array.from({ length: 18 }, (_, index) => {
+      const qty = 3 + ((index * 4) % 16);
+      const unit = 14900 + index * 1900;
+      const subtotal = qty * unit;
+      const purchase = subtotal - (index % 4) * 4500;
+      return {
+        date: `2026-06-${String(1 + (index % 16)).padStart(2, "0")}`,
+        name: `더미 매입상품 ${String(index + 1).padStart(2, "0")}`,
+        code: `DM-CT${String(index + 1).padStart(2, "0")}`,
+        category: ["건강기능식품", "생활용품", "식품", "디지털/가전"][index % 4],
+        qty, unit, subtotal, purchase,
+        coupon: index % 3 === 0 ? `DM-CP${index + 1}` : "-",
+        check: index % 6 === 0 ? "가격점검" : "정상",
+        type: index % 2 === 0 ? "영수증" : "온라인 주문"
+      };
+    });
+
+    const salesProducts = Array.from({ length: 14 }, (_, index) => {
+      const channel = index % 3 === 0 ? "GROWTH" : "WING";
+      const currentPrice = 29900 + index * 3600;
+      const actualPrice = currentPrice - (index % 4) * 700;
+      const cost = 19800 + index * 2500;
+      const bep = cost + 3100 + (index % 5) * 650;
+      return {
+        name: `더미 판매상품 ${String(index + 1).padStart(2, "0")}`,
+        option: index % 4 === 0 ? "세트 옵션" : "기본 옵션",
+        id: `DM-S${String(index + 1).padStart(2, "0")}`,
+        channel, currentPrice, actualPrice, cost, bep,
+        stock: index % 6 === 0 ? 0 : 5 + ((index * 4) % 21),
+        inbound: index % 6 === 0 ? "지연 확인" : (index % 4 === 0 ? "입고중" : "정상")
+      };
+    });
+
+    function formatDateLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    const salesDates = Array.from({ length: 30 }, (_, index) => {
+      const date = new Date(2026, 4, 18);
+      date.setDate(date.getDate() + index);
+      return formatDateLocal(date);
+    });
+
+    function onlineCatKey(item) {
+      if (item.cat1 === "식품") return "food";
+      if (item.cat1 === "비식품") return "nonfood";
+      return "other";
+    }
+
+    function currentOnlineRows() {
+      return sourcingData.online.filter((item) => {
+        const catMatch = sourcingState.onlineCat === "all" || onlineCatKey(item) === sourcingState.onlineCat;
+        const cat2Match = sourcingState.onlineCat2 === "all" || item.cat2 === sourcingState.onlineCat2;
+        return catMatch && cat2Match;
+      });
+    }
+
+    function renderOnlineCat2Options() {
+      const panel = document.getElementById("online-cat2-panel");
+      const options = document.getElementById("online-cat2-options");
+      if (!panel || !options) return;
+      if (sourcingState.onlineCat === "all") {
+        panel.classList.remove("open");
+        options.innerHTML = "";
+        sourcingState.onlineCat2 = "all";
+        return;
+      }
+      const cat2Values = [...new Set(sourcingData.online
+        .filter((item) => onlineCatKey(item) === sourcingState.onlineCat)
+        .map((item) => item.cat2 || "-"))].sort();
+      panel.classList.add("open");
+      options.innerHTML = [
+        `<button class="cat-chip ${sourcingState.onlineCat2 === "all" ? "active" : ""}" type="button" data-online-cat2="all">전체</button>`,
+        ...cat2Values.map((cat2) =>
+          `<button class="cat-chip ${sourcingState.onlineCat2 === cat2 ? "active" : ""}" type="button" data-online-cat2="${escapeHtml(cat2)}">${escapeHtml(cat2)}</button>`
+        )
+      ].join("");
+    }
+
+    function renderOnlineSourcingRows() {
+      const tbody = document.getElementById("online-sourcing-body");
+      if (!tbody) return;
+      renderOnlineCat2Options();
+      const rows = currentOnlineRows();
+      tbody.innerHTML = rows.map((item) => {
+        const tagHtml = (item.tags || []).map((tag) =>
+          `<span class="tag ${tag.includes("로켓") ? "tag-rocket" : "tag-home"}">${escapeHtml(tag)}</span>`
+        ).join("");
+        const comparePrice = item.discount_price || item.online_price || 0;
+        const diff = item.offline_price > 0 ? comparePrice - item.offline_price : 0;
+        const margin = (item.coupang_est || 0) - comparePrice;
+        return `
+          <tr>
+            <td><img src="${escapeHtml(item.image_url)}" loading="lazy" class="img-thumb-md" onerror="this.style.display='none'"></td>
+            <td>
+              <div class="cell-name">${escapeHtml(item.name)}</div>
+              <div class="cell-id-xs">ID: ${escapeHtml(item.id)}</div>
+              <div class="tag-row">${tagHtml}</div>
+            </td>
+            <td><div class="cat1-label">${escapeHtml(item.cat1)}</div><div class="cat2-label">${escapeHtml(item.cat2)}</div></td>
+            <td><div class="score-badge">${Math.round(item.score || 0)}점</div></td>
+            <td>
+              <div class="price-label-sm">온라인(정가): ${fmtPlainWon(item.online_price)}</div>
+              <div class="price-label-sm" style="color:#38bdf8">할인가: ${item.discount_price ? fmtPlainWon(item.discount_price) : "-"}</div>
+              <div class="price-val-sm">매장가: ${item.offline_price ? fmtPlainWon(item.offline_price) : "-"}</div>
+              ${diff > 0 ? `<div class="diff-note trend-up">(차액: +${fmtPlainWon(diff)})</div>` : ""}
+            </td>
+            <td><div class="profit-box"><div>예상가</div><div class="profit-val">${fmtPlainWon(item.coupang_est)}</div><div class="${margin >= 0 ? "trend-up" : "trend-down"}">${margin >= 0 ? "+" : ""}${fmtPlainWon(margin)}</div></div></td>
+            <td class="${item.discount_rate >= 20 ? "disc-high-lg" : "disc-normal"}">${(item.discount_rate || 0).toFixed(1)}%</td>
+            <td><button class="action-btn js-online-open" type="button" data-url="${escapeHtml(item.url)}">↗ 이동</button></td>
+          </tr>`;
+      }).join("");
+    }
+
+    function currentOfflineRows() {
+      return sourcingData.offline.filter((item) =>
+        sourcingState.offlineCategory === "all" || item.category === sourcingState.offlineCategory
+      );
+    }
+
+    function renderOfflineCategoryOptions() {
+      const panel = document.getElementById("offline-category-panel");
+      const options = document.getElementById("offline-category-options");
+      if (!panel || !options) return;
+      panel.classList.toggle("open", sourcingState.offlinePanelOpen);
+      const categories = [...new Set(sourcingData.offline.map((item) => item.category || "기타"))].sort();
+      options.innerHTML = [
+        `<button class="cat-chip ${sourcingState.offlineCategory === "all" ? "active" : ""}" type="button" data-offline-category="all">전체</button>`,
+        ...categories.map((category) =>
+          `<button class="cat-chip ${sourcingState.offlineCategory === category ? "active" : ""}" type="button" data-offline-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`
+        )
+      ].join("");
+    }
+
+    function renderOfflineSourcingRows() {
+      const tbody = document.getElementById("offline-sourcing-body");
+      if (!tbody) return;
+      renderOfflineCategoryOptions();
+      tbody.innerHTML = currentOfflineRows().map((item) => {
+        const diff = (item.online_price || 0) - (item.offline_price || 0);
+        return `
+          <tr>
+            <td><img src="${escapeHtml(item.image_url)}" loading="lazy" class="img-thumb-lg" onerror="this.style.display='none'"></td>
+            <td><div class="cell-name">${escapeHtml(item.name)}</div><div class="cell-id-xs">ID: ${escapeHtml(item.id)}</div></td>
+            <td><span class="badge">${escapeHtml(item.category)}</span></td>
+            <td class="cell-price-online">${fmtPlainWon(item.online_price)}</td>
+            <td class="cell-price-offline">${fmtPlainWon(item.offline_price)}</td>
+            <td class="${item.discount_rate >= 0.2 ? "disc-high" : "disc-normal"}">${((item.discount_rate || 0) * 100).toFixed(1)}%</td>
+            <td class="cell-diff">+${fmtPlainWon(diff)}</td>
+            <td class="cell-promo">${escapeHtml(item.promo_period || "-")}</td>
+          </tr>`;
+      }).join("");
+    }
+
+    function renderPurchaseRows() {
+      const wingBody = document.getElementById("purchase-wing-body");
+      const growthBody = document.getElementById("purchase-growth-body");
+      const detailBody = document.getElementById("purchase-detail-body");
+      wingBody.innerHTML = purchaseWingItems.map((item) => purchaseRow(item, false)).join("");
+      growthBody.innerHTML = purchaseGrowthItems.map((item) => purchaseRow(item, true)).join("");
+      detailBody.innerHTML = purchaseDetailItems.map((item) => `
+        <tr>
+          <td>${item.date}</td><td>${escapeHtml(item.name)}</td><td>${item.code}</td><td>${item.category}</td><td>${item.qty}</td>
+          <td>${fmtWon(item.unit)}</td><td>${fmtWon(item.subtotal)}</td><td>${item.coupon}</td><td>${fmtWon(item.purchase)}</td>
+          <td><span class="tag-type ${item.check === "정상" ? "tag-profit" : "tag-loss"}">${item.check}</span></td><td>${item.type}</td>
+        </tr>`).join("");
+    }
+
+    function purchaseRow(item, hasGrowthFields) {
+      const margin = item.salePrice - item.bep;
+      const marginRate = item.salePrice ? (margin / item.salePrice) * 100 : 0;
+      const statusClass = margin >= 0 ? "tag-profit" : "tag-loss";
+      const base = `
+        <td><div class="cq-name">${escapeHtml(item.name)}</div></td>
+        <td><span class="margin-chip ${statusClass}">${escapeHtml(item.status)}</span></td>
+        <td class="cq-number-cell ${margin >= 0 ? "col-green" : "col-red"}">${marginRate.toFixed(1)}%</td>
+        <td class="cq-price-cell ${margin >= 0 ? "col-green" : "col-red"}">${fmtWon(margin)}</td>
+        <td class="cq-price-cell">${fmtWon(item.salePrice)}</td>
+        <td class="cq-price-cell">${fmtWon(item.cost)}</td>
+        <td class="cq-price-cell">${fmtWon(item.bep)}</td>
+        <td class="cq-number-cell">${item.units}개</td>
+        <td class="cq-price-cell">${fmtWon(item.salePrice * item.units)}</td>`;
+      const growth = hasGrowthFields
+        ? `<td><span class="rg-stock-pill ${item.stock > 0 ? "in-stock" : "no-stock"}">${item.stock}개</span></td><td><span class="inbound-pill">${escapeHtml(item.inbound)}</span></td>`
+        : "";
+      return `<tr>${base}${growth}<td><div class="cq-option">${escapeHtml(item.option)}</div></td><td><span class="code-badge">${escapeHtml(item.id)}</span></td></tr>`;
+    }
+
+    function getSalesUnits(productIndex, dateIndex) {
+      return (productIndex * 3 + dateIndex * 2 + (dateIndex % 5)) % 7;
+    }
+
+    function getSelectedSalesDates() {
+      const startInput = document.getElementById("sales-start-date");
+      const endInput = document.getElementById("sales-end-date");
+      let start = startInput.value || salesDates[0];
+      let end = endInput.value || salesDates[salesDates.length - 1];
+      if (start > end) [start, end] = [end, start];
+      return salesDates.filter((date) => date >= start && date <= end);
+    }
+
+    function renderSalesPortfolio() {
+      const selectedDates = getSelectedSalesDates();
+      const selectedSet = new Set(selectedDates);
+      const productRows = salesProducts.map((product, productIndex) => {
+        const units = salesDates.reduce((sum, date, dateIndex) =>
+          selectedSet.has(date) ? sum + getSalesUnits(productIndex, dateIndex) : sum, 0);
+        const revenue = units * product.actualPrice;
+        const margin = product.actualPrice - product.bep;
+        const profit = units * margin;
+        return { ...product, units, revenue, margin, profit, marginRate: product.actualPrice ? (margin / product.actualPrice) * 100 : 0 };
+      }).sort((a, b) => b.revenue - a.revenue);
+
+      const totals = productRows.reduce((acc, row) => {
+        acc.units += row.units;
+        acc.revenue += row.revenue;
+        acc.profit += row.profit;
+        return acc;
+      }, { units: 0, revenue: 0, profit: 0 });
+      const riskCount = productRows.filter((row) => row.stock <= 2 || row.inbound.includes("지연")).length;
+      const marginRate = totals.revenue ? (totals.profit / totals.revenue) * 100 : 0;
+
+      document.getElementById("sales-summary-revenue").textContent = fmtWon(totals.revenue);
+      document.getElementById("sales-summary-range").textContent = `${selectedDates[0] || "-"} ~ ${selectedDates[selectedDates.length - 1] || "-"} 기준`;
+      document.getElementById("sales-summary-units").textContent = `${totals.units.toLocaleString("ko-KR")}개`;
+      document.getElementById("sales-summary-profit").textContent = fmtWon(totals.profit);
+      document.getElementById("sales-summary-margin").textContent = `${marginRate.toFixed(1)}%`;
+      document.getElementById("sales-summary-count").textContent = productRows.length;
+      document.getElementById("sales-summary-risk").textContent = riskCount;
+      document.getElementById("sales-chart-status").textContent = `${selectedDates.length}일 선택 / 주문 API 기준 일별 집계 더미`;
+      document.getElementById("sales-table-status").textContent = `${productRows.length}개 더미 상품 / 개인 판매 데이터 비식별`;
+
+      document.getElementById("sales-product-body").innerHTML = productRows.map((row) => `
+        <tr>
+          <td><div class="name">${escapeHtml(row.name)}</div><div class="option">${escapeHtml(row.option)}</div></td>
+          <td><span class="badge ${row.channel === "GROWTH" ? "growth" : "wing"}">${row.channel}</span></td>
+          <td><span class="badge ${row.margin >= 0 ? "good" : "bad"}">${row.margin >= 0 ? "수익" : "주의"}</span></td>
+          <td class="num">${fmtWon(row.currentPrice)}</td><td class="num">${fmtWon(row.actualPrice)}</td><td class="num">${fmtWon(row.cost)}</td><td class="num">${fmtWon(row.bep)}</td>
+          <td class="num ${row.margin >= 0 ? "positive" : "negative"}">${fmtWon(row.margin)}</td><td class="num ${row.marginRate >= 0 ? "positive" : "negative"}">${row.marginRate.toFixed(1)}%</td>
+          <td class="num">${row.units}</td><td class="num">${fmtWon(row.revenue)}</td><td class="num ${row.profit >= 0 ? "positive" : "negative"}">${fmtWon(row.profit)}</td>
+          <td>${row.stock}</td><td>${escapeHtml(row.inbound)}</td><td><span class="badge">${escapeHtml(row.id)}</span></td>
+        </tr>`).join("");
+
+      renderSalesChart(selectedDates);
+    }
+
+    function renderSalesChart(selectedDates) {
+      const svg = document.getElementById("sales-trend-svg");
+      const daily = selectedDates.map((date) => {
+        const dateIndex = salesDates.indexOf(date);
+        const units = salesProducts.reduce((sum, _, productIndex) => sum + getSalesUnits(productIndex, dateIndex), 0);
+        const revenue = salesProducts.reduce((sum, product, productIndex) => sum + getSalesUnits(productIndex, dateIndex) * product.actualPrice, 0);
+        return { date, units, revenue };
+      });
+      const maxUnits = Math.max(1, ...daily.map((d) => d.units));
+      const maxRevenue = Math.max(1, ...daily.map((d) => d.revenue));
+      const point = (value, max, index) => {
+        const x = daily.length <= 1 ? 60 : 60 + (index * 740) / (daily.length - 1);
+        const y = 230 - (value / max) * 190;
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      };
+      const unitPoints = daily.map((d, i) => point(d.units, maxUnits, i)).join(" ");
+      const revenuePoints = daily.map((d, i) => point(d.revenue, maxRevenue, i)).join(" ");
+      const labels = daily.filter((_, i) => i === 0 || i === daily.length - 1 || i % Math.ceil(Math.max(1, daily.length / 6)) === 0);
+      svg.innerHTML = `
+        <line x1="52" y1="38" x2="816" y2="38" stroke="rgba(154,168,178,.16)" />
+        <line x1="52" y1="86" x2="816" y2="86" stroke="rgba(154,168,178,.16)" />
+        <line x1="52" y1="134" x2="816" y2="134" stroke="rgba(154,168,178,.16)" />
+        <line x1="52" y1="182" x2="816" y2="182" stroke="rgba(154,168,178,.16)" />
+        <line x1="52" y1="230" x2="816" y2="230" stroke="rgba(154,168,178,.16)" />
+        <polyline fill="none" stroke="#f5b84b" stroke-width="3" points="${unitPoints}" />
+        <polyline fill="none" stroke="#38bdf8" stroke-width="3" points="${revenuePoints}" />
+        <g fill="#f5b84b">${daily.map((d, i) => `<circle cx="${point(d.units, maxUnits, i).split(",")[0]}" cy="${point(d.units, maxUnits, i).split(",")[1]}" r="3"/>`).join("")}</g>
+        <g fill="#38bdf8">${daily.map((d, i) => `<circle cx="${point(d.revenue, maxRevenue, i).split(",")[0]}" cy="${point(d.revenue, maxRevenue, i).split(",")[1]}" r="3"/>`).join("")}</g>
+        <g fill="#6f7e89" font-size="12">${labels.map((d) => {
+          const i = daily.indexOf(d);
+          const x = daily.length <= 1 ? 50 : 50 + (i * 740) / (daily.length - 1);
+          return `<text x="${x.toFixed(1)}" y="258">${Number(d.date.slice(5, 7))}/${Number(d.date.slice(8, 10))}</text>`;
+        }).join("")}</g>`;
+    }
+
+    function setSalesRange(days) {
+      const end = new Date(2026, 5, 16);
+      const start = new Date(end);
+      start.setDate(end.getDate() - days + 1);
+      document.getElementById("sales-start-date").value = formatDateLocal(start);
+      document.getElementById("sales-end-date").value = formatDateLocal(end);
+      document.querySelectorAll("[data-sales-range]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.salesRange === String(days));
+      });
+      renderSalesPortfolio();
+    }
+
+    function renderDemoData() {
+      renderOnlineSourcingRows();
+      renderOfflineSourcingRows();
+      renderPurchaseRows();
+      renderSalesPortfolio();
+    }
+
+    document.querySelectorAll("[data-view-target]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.viewTarget;
+        document.querySelectorAll("[data-view-target]").forEach((item) => {
+          item.classList.toggle("active", item === button);
+        });
+        document.querySelectorAll(".view").forEach((view) => {
+          view.classList.toggle("active", view.id === target);
+        });
+      });
+    });
+
+    function setPurchaseTab(tab) {
+      document.getElementById("cq-tab-wing").className = "cq-tab" + (tab === "wing" ? " active-wing" : "");
+      document.getElementById("cq-tab-growth").className = "cq-tab" + (tab === "growth" ? " active-growth" : "");
+      const label = document.getElementById("cq-mode-label");
+      label.textContent = tab === "wing" ? "WING" : "GROWTH";
+      label.className = tab === "wing" ? "coupang-logo" : "coupang-logo growth";
+      document.getElementById("purchase-wing-table").style.display = tab === "wing" ? "" : "none";
+      document.getElementById("purchase-growth-table").style.display = tab === "growth" ? "" : "none";
+    }
+
+    document.getElementById("sales-date-apply").addEventListener("click", renderSalesPortfolio);
+    document.querySelectorAll("[data-sales-range]").forEach((button) => {
+      button.addEventListener("click", () => setSalesRange(Number(button.dataset.salesRange)));
+    });
+
+    document.querySelectorAll("[data-online-cat]").forEach((button) => {
+      button.addEventListener("click", () => {
+        sourcingState.onlineCat = button.dataset.onlineCat;
+        sourcingState.onlineCat2 = "all";
+        document.querySelectorAll("[data-online-cat]").forEach((item) => {
+          item.classList.toggle("active", item === button);
+        });
+        renderOnlineSourcingRows();
+      });
+    });
+
+    document.getElementById("offline-category-toggle").addEventListener("click", () => {
+      sourcingState.offlinePanelOpen = !sourcingState.offlinePanelOpen;
+      renderOfflineCategoryOptions();
+    });
+
+    document.addEventListener("click", (event) => {
+      const onlineCat2 = event.target.closest("[data-online-cat2]");
+      if (onlineCat2) {
+        sourcingState.onlineCat2 = onlineCat2.dataset.onlineCat2;
+        renderOnlineSourcingRows();
+        return;
+      }
+
+      const offlineCategory = event.target.closest("[data-offline-category]");
+      if (offlineCategory) {
+        sourcingState.offlineCategory = offlineCategory.dataset.offlineCategory;
+        renderOfflineSourcingRows();
+        return;
+      }
+
+      const onlineOpen = event.target.closest(".js-online-open");
+      if (onlineOpen) {
+        const url = onlineOpen.getAttribute("data-url");
+        if (url) window.open(url, "_blank", "noopener");
+      }
+    });
+
+    renderDemoData();
+
+    document.querySelectorAll(".js-restricted").forEach((button) => {
+      button.addEventListener("click", () => {
+        const message = button.textContent.includes("동기화") ? syncRestrictedMessage : restrictedMessage;
+        window.alert(message);
+      });
+    });
+  </script>
+</body>
+</html>

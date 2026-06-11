@@ -1,0 +1,1728 @@
+{
+  "generatedAt": "2026-06-11T06:51:03.635Z",
+  "policy": {
+    "publicOnly": true,
+    "source": "08_public/portfolio/allowlist.json",
+    "allowedRoot": "08_public"
+  },
+  "stats": {
+    "publicSearchItemCount": 32,
+    "publicGraphNodeCount": 32,
+    "publicGraphEdgeCount": 122,
+    "excludedPrivateCount": 0
+  },
+  "items": [
+    {
+      "id": "second-brain-search",
+      "title": "Second Brain Search 구조",
+      "type": "tool",
+      "domains": [
+        "second-brain",
+        "llm"
+      ],
+      "summary": "공개 승인된 지식 노드만 검색 대상으로 삼고, 결과에서 관련 노드와 업무 맥락을 함께 탐색하게 만드는 포트폴리오 구조다.",
+      "tags": [
+        "search",
+        "knowledge-graph",
+        "portfolio",
+        "public-index"
+      ],
+      "relatedNodes": [
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "supports"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/second-brain-search.md",
+      "lastUpdated": "2026-06-08",
+      "body": "Second Brain Search 구조는 내부 자료 전체를 검색하게 만드는 기능이 아니다.\n\n이 MVP에서는 공개 승인된 노드만 별도 allowlist로 골라 검색 인덱스를 만들고, 사용자가 검색 결과에서 관련 노드로 이동할 수 있게 한다.\n\n검색 기능 자체가 공개와 비공개를 분리해 다루는 역량을 보여주는 증거가 된다.",
+      "searchText": "second brain search 구조 tool second-brain llm 공개 승인된 지식 노드만 검색 대상으로 삼고, 결과에서 관련 노드와 업무 맥락을 함께 탐색하게 만드는 포트폴리오 구조다. search knowledge-graph portfolio public-index 공개/비공개 지식 분리 도메인 시나리오 매핑 고객 요구사항 분석 second brain search 구조는 내부 자료 전체를 검색하게 만드는 기능이 아니다.\n\n이 mvp에서는 공개 승인된 노드만 별도 allowlist로 골라 검색 인덱스를 만들고, 사용자가 검색 결과에서 관련 노드로 이동할 수 있게 한다.\n\n검색 기능 자체가 공개와 비공개를 분리해 다루는 역량을 보여주는 증거가 된다."
+    },
+    {
+      "id": "public-private-knowledge-boundary",
+      "title": "공개/비공개 지식 분리",
+      "type": "workflow",
+      "domains": [
+        "second-brain",
+        "llm"
+      ],
+      "summary": "개인 허브의 원본 지식과 포트폴리오 공개 레이어를 분리해, 검색 인덱스와 그래프에 공개 승인 자료만 포함시키는 운영 원칙이다.",
+      "tags": [
+        "privacy",
+        "public-layer",
+        "second-brain",
+        "validation"
+      ],
+      "relatedNodes": [
+        {
+          "id": "second-brain-search",
+          "title": "Second Brain Search 구조",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/public-private-knowledge-boundary.md",
+      "lastUpdated": "2026-06-08",
+      "body": "Second Brain은 개인 작업 허브이므로 모든 내부 지식이 공개 대상이 될 수 없다.\n\n공개 포트폴리오는 검토된 요약과 구조만 사용하고, 원본 업무자료나 민감한 세부 사항은 검색 인덱스와 그래프 데이터에 포함하지 않는다.\n\n이 노드는 공개 가능한 지식과 비공개 지식의 경계를 포트폴리오 기능 자체로 보여준다.",
+      "searchText": "공개/비공개 지식 분리 workflow second-brain llm 개인 허브의 원본 지식과 포트폴리오 공개 레이어를 분리해, 검색 인덱스와 그래프에 공개 승인 자료만 포함시키는 운영 원칙이다. privacy public-layer second-brain validation second brain search 구조 도메인 시나리오 매핑 ai agent 품질 평가 관점 second brain은 개인 작업 허브이므로 모든 내부 지식이 공개 대상이 될 수 없다.\n\n공개 포트폴리오는 검토된 요약과 구조만 사용하고, 원본 업무자료나 민감한 세부 사항은 검색 인덱스와 그래프 데이터에 포함하지 않는다.\n\n이 노드는 공개 가능한 지식과 비공개 지식의 경계를 포트폴리오 기능 자체로 보여준다."
+    },
+    {
+      "id": "customer-requirements-analysis",
+      "title": "고객 요구사항 분석",
+      "type": "skill",
+      "domains": [
+        "ai-agent",
+        "llm"
+      ],
+      "summary": "고객사의 업무 표현을 입력, 판단 기준, 예외 조건, 출력 형식으로 분해해 AI 대화 구조로 전환하는 역량이다.",
+      "tags": [
+        "requirements",
+        "scenario-design",
+        "prompting",
+        "workflow"
+      ],
+      "relatedNodes": [
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "supports"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "applies-to"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/customer-requirements-analysis.md",
+      "lastUpdated": "2026-06-08",
+      "body": "고객 요구사항 분석은 요청 문장을 그대로 프롬프트로 옮기는 일이 아니다.\n\n업무 담당자가 실제로 확인하는 기준, 필요한 입력값, 금지해야 할 답변, 실패했을 때의 대체 흐름을 분리해야 한다.\n\n이 노드는 현업 요구사항을 AI Agent 대화 구조와 Prompt Library 설계로 옮기는 중심 역량을 나타낸다.",
+      "searchText": "고객 요구사항 분석 skill ai-agent llm 고객사의 업무 표현을 입력, 판단 기준, 예외 조건, 출력 형식으로 분해해 ai 대화 구조로 전환하는 역량이다. requirements scenario-design prompting workflow tool calling 요구사항 정의 도메인 시나리오 매핑 보험 상품 설명 ai 시나리오 고객 요구사항 분석은 요청 문장을 그대로 프롬프트로 옮기는 일이 아니다.\n\n업무 담당자가 실제로 확인하는 기준, 필요한 입력값, 금지해야 할 답변, 실패했을 때의 대체 흐름을 분리해야 한다.\n\n이 노드는 현업 요구사항을 ai agent 대화 구조와 prompt library 설계로 옮기는 중심 역량을 나타낸다."
+    },
+    {
+      "id": "tool-calling-requirements",
+      "title": "Tool Calling 요구사항 정의",
+      "type": "skill",
+      "domains": [
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "도구 호출이 필요한 업무를 입력값, 응답값, 예외 조건, 실패 시 대체 응답으로 분해하는 설계 역량이다.",
+      "tags": [
+        "tool-calling",
+        "requirements",
+        "exceptions",
+        "llm"
+      ],
+      "relatedNodes": [
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "extends"
+        },
+        {
+          "id": "prompt-library-ecommerce-detail-pages",
+          "title": "이커머스 상세페이지 Prompt Library",
+          "type": "supports"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "requires"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/tool-calling-requirements.md",
+      "lastUpdated": "2026-06-08",
+      "body": "Tool Calling은 도구를 많이 연결하는 일이 아니라, 언제 어떤 값을 확인해야 하는지 명확히 정의하는 일이다.\n\n입력값, 응답값, 예외 조건, 실패 시 사용자에게 되묻는 방식이 정리되어야 AI Agent이 실제 업무 도구처럼 작동할 수 있다.",
+      "searchText": "tool calling 요구사항 정의 skill llm ai-agent 도구 호출이 필요한 업무를 입력값, 응답값, 예외 조건, 실패 시 대체 응답으로 분해하는 설계 역량이다. tool-calling requirements exceptions llm 고객 요구사항 분석 이커머스 상세페이지 prompt library 보험 상품 설명 ai 시나리오 ai agent 품질 평가 관점 tool calling은 도구를 많이 연결하는 일이 아니라, 언제 어떤 값을 확인해야 하는지 명확히 정의하는 일이다.\n\n입력값, 응답값, 예외 조건, 실패 시 사용자에게 되묻는 방식이 정리되어야 ai agent이 실제 업무 도구처럼 작동할 수 있다."
+    },
+    {
+      "id": "prompt-library-ecommerce-detail-pages",
+      "title": "이커머스 상세페이지 Prompt Library",
+      "type": "prompt",
+      "domains": [
+        "ecommerce",
+        "llm"
+      ],
+      "summary": "상품 설명 자동화를 단발 프롬프트가 아니라 목적, 입력값, 금지 표현, 검수 기준이 있는 Prompt Library로 관리하는 방식이다.",
+      "tags": [
+        "prompt-library",
+        "ecommerce",
+        "product-description",
+        "workflow"
+      ],
+      "relatedNodes": [
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "supports"
+        },
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "instantiates"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/prompt-library-ecommerce-detail-pages.md",
+      "lastUpdated": "2026-06-08",
+      "body": "이커머스 상세페이지 자동화는 한 번 잘 쓴 문구보다 재사용 가능한 생성 기준이 중요하다.\n\nPrompt Library는 입력 자료의 신뢰도, 표현 제한, 상품군별 강조점, 검수 항목을 분리해 관리하는 방식이다.\n\n이 노드는 실제 거래 세부 자료 없이 공개 가능한 구조만 설명한다.",
+      "searchText": "이커머스 상세페이지 prompt library prompt ecommerce llm 상품 설명 자동화를 단발 프롬프트가 아니라 목적, 입력값, 금지 표현, 검수 기준이 있는 prompt library로 관리하는 방식이다. prompt-library ecommerce product-description workflow 고객 요구사항 분석 tool calling 요구사항 정의 도메인 시나리오 매핑 이커머스 상세페이지 자동화는 한 번 잘 쓴 문구보다 재사용 가능한 생성 기준이 중요하다.\n\nprompt library는 입력 자료의 신뢰도, 표현 제한, 상품군별 강조점, 검수 항목을 분리해 관리하는 방식이다.\n\n이 노드는 실제 거래 세부 자료 없이 공개 가능한 구조만 설명한다."
+    },
+    {
+      "id": "insurance-product-ai-scenario",
+      "title": "보험 상품 설명 AI 시나리오",
+      "type": "scenario",
+      "domains": [
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "금융 도메인의 복잡한 설명 요구를 사용자의 이해 수준, 확인 조건, 금지 표현, 다음 질문 흐름으로 나누는 시나리오다.",
+      "tags": [
+        "insurance",
+        "scenario",
+        "conversation",
+        "domain"
+      ],
+      "relatedNodes": [
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "derived-from"
+        },
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "instantiates"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/insurance-product-ai-scenario.md",
+      "lastUpdated": "2026-06-08",
+      "body": "보험 상품 설명은 사용자의 질문에 즉흥적으로 답하는 것보다, 조건 확인과 표현 제한을 먼저 설계해야 안정적이다.\n\n이 노드는 금융 도메인의 설명형 대화를 공개 가능한 수준으로 추상화한 사례다.\n\n세부 상품 조건이나 민감한 개인 자료는 포함하지 않는다.",
+      "searchText": "보험 상품 설명 ai 시나리오 scenario insurance ai-agent 금융 도메인의 복잡한 설명 요구를 사용자의 이해 수준, 확인 조건, 금지 표현, 다음 질문 흐름으로 나누는 시나리오다. insurance scenario conversation domain 고객 요구사항 분석 tool calling 요구사항 정의 도메인 시나리오 매핑 보험 상품 설명은 사용자의 질문에 즉흥적으로 답하는 것보다, 조건 확인과 표현 제한을 먼저 설계해야 안정적이다.\n\n이 노드는 금융 도메인의 설명형 대화를 공개 가능한 수준으로 추상화한 사례다.\n\n세부 상품 조건이나 민감한 개인 자료는 포함하지 않는다."
+    },
+    {
+      "id": "branch-onboarding-workflow",
+      "title": "지점 온보딩 Workflow",
+      "type": "workflow",
+      "domains": [
+        "education",
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "새로운 사용자가 업무 기준, 학습 순서, 반복 확인 항목을 빠르게 이해하도록 돕는 온보딩 흐름을 공개 가능한 수준으로 추상화한 노드다.",
+      "tags": [
+        "onboarding",
+        "workflow",
+        "education",
+        "operations"
+      ],
+      "relatedNodes": [
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "applies-to"
+        },
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "supports"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "instantiates"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/branch-onboarding-workflow.md",
+      "lastUpdated": "2026-06-08",
+      "body": "온보딩은 자료를 많이 보여주는 일이 아니라, 처음 업무를 맡은 사람이 무엇을 먼저 판단해야 하는지 정렬하는 일에 가깝다.\n\n이 노드는 지점 운영과 교육 업무에서 반복되는 기준 확인, 역할 이해, 다음 행동 안내를 AI Workflow로 바꾸는 방향을 설명한다.\n\n세부 개인 정보나 내부 운영 수치는 포함하지 않는다.",
+      "searchText": "지점 온보딩 workflow workflow education insurance ai-agent 새로운 사용자가 업무 기준, 학습 순서, 반복 확인 항목을 빠르게 이해하도록 돕는 온보딩 흐름을 공개 가능한 수준으로 추상화한 노드다. onboarding workflow education operations 고객 요구사항 분석 교육 성과 분석 dashboard 도메인 시나리오 매핑 온보딩은 자료를 많이 보여주는 일이 아니라, 처음 업무를 맡은 사람이 무엇을 먼저 판단해야 하는지 정렬하는 일에 가깝다.\n\n이 노드는 지점 운영과 교육 업무에서 반복되는 기준 확인, 역할 이해, 다음 행동 안내를 ai workflow로 바꾸는 방향을 설명한다.\n\n세부 개인 정보나 내부 운영 수치는 포함하지 않는다."
+    },
+    {
+      "id": "education-performance-dashboard",
+      "title": "교육 성과 분석 Dashboard",
+      "type": "case",
+      "domains": [
+        "education",
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "교육 운영에서 확인해야 하는 상태와 다음 행동을 대시보드형 판단 흐름으로 정리하는 공개 가능한 사례 노드다.",
+      "tags": [
+        "dashboard",
+        "education",
+        "evaluation",
+        "operations"
+      ],
+      "relatedNodes": [
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "improves"
+        },
+        {
+          "id": "branch-onboarding-workflow",
+          "title": "지점 온보딩 Workflow",
+          "type": "supports"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "derived-from"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-performance-dashboard.md",
+      "lastUpdated": "2026-06-08",
+      "body": "교육 성과 분석은 숫자를 보여주는 것만으로 끝나지 않는다.\n\n실제 운영에서는 어떤 상태를 먼저 봐야 하는지, 어떤 사람에게 어떤 안내가 필요한지, 반복되는 질문을 어떻게 줄일지까지 함께 설계해야 한다.\n\n이 노드는 상세 내부 데이터 없이 대시보드형 업무 흐름을 AI Workflow 관점으로 설명한다.",
+      "searchText": "교육 성과 분석 dashboard case education insurance ai-agent 교육 운영에서 확인해야 하는 상태와 다음 행동을 대시보드형 판단 흐름으로 정리하는 공개 가능한 사례 노드다. dashboard education evaluation operations ai agent 품질 평가 관점 지점 온보딩 workflow 고객 요구사항 분석 교육 성과 분석은 숫자를 보여주는 것만으로 끝나지 않는다.\n\n실제 운영에서는 어떤 상태를 먼저 봐야 하는지, 어떤 사람에게 어떤 안내가 필요한지, 반복되는 질문을 어떻게 줄일지까지 함께 설계해야 한다.\n\n이 노드는 상세 내부 데이터 없이 대시보드형 업무 흐름을 ai workflow 관점으로 설명한다."
+    },
+    {
+      "id": "domain-scenario-mapping",
+      "title": "도메인 시나리오 매핑",
+      "type": "workflow",
+      "domains": [
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "보험, 이커머스, 교육 운영처럼 서로 다른 업무 경험을 공통 시나리오 단위로 연결하는 구조화 방식이다.",
+      "tags": [
+        "domain",
+        "scenario",
+        "knowledge-graph",
+        "second-brain"
+      ],
+      "relatedNodes": [
+        {
+          "id": "second-brain-search",
+          "title": "Second Brain Search 구조",
+          "type": "supports"
+        },
+        {
+          "id": "prompt-library-ecommerce-detail-pages",
+          "title": "이커머스 상세페이지 Prompt Library",
+          "type": "instantiates"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "instantiates"
+        },
+        {
+          "id": "branch-onboarding-workflow",
+          "title": "지점 온보딩 Workflow",
+          "type": "instantiates"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/domain-scenario-mapping.md",
+      "lastUpdated": "2026-06-08",
+      "body": "도메인 시나리오 매핑은 경력의 여러 갈래를 단순 나열하지 않고, 반복되는 업무 문제와 AI 적용 단위로 다시 묶는 방식이다.\n\n이 구조에서는 보험 상담, 상품 설명, 교육 운영, 업무 대시보드가 각각 떨어진 경험이 아니라 입력, 판단, 응답, 검증이라는 공통 패턴으로 연결된다.",
+      "searchText": "도메인 시나리오 매핑 workflow llm ai-agent 보험, 이커머스, 교육 운영처럼 서로 다른 업무 경험을 공통 시나리오 단위로 연결하는 구조화 방식이다. domain scenario knowledge-graph second-brain second brain search 구조 이커머스 상세페이지 prompt library 보험 상품 설명 ai 시나리오 지점 온보딩 workflow 도메인 시나리오 매핑은 경력의 여러 갈래를 단순 나열하지 않고, 반복되는 업무 문제와 ai 적용 단위로 다시 묶는 방식이다.\n\n이 구조에서는 보험 상담, 상품 설명, 교육 운영, 업무 대시보드가 각각 떨어진 경험이 아니라 입력, 판단, 응답, 검증이라는 공통 패턴으로 연결된다."
+    },
+    {
+      "id": "ai-agent-quality-evaluation",
+      "title": "AI Agent 품질 평가 관점",
+      "type": "insight",
+      "domains": [
+        "ai-agent",
+        "llm"
+      ],
+      "summary": "AI Agent이 실제 업무 화면에서 유용하려면 답변 품질뿐 아니라 업무 맥락 이해, 예외 대응, 다음 행동 제안까지 함께 평가해야 한다.",
+      "tags": [
+        "ai-agent",
+        "evaluation",
+        "workflow",
+        "scenario"
+      ],
+      "relatedNodes": [
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "improves"
+        },
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "requires"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "extends"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/ai-agent-quality-evaluation.md",
+      "lastUpdated": "2026-06-08",
+      "body": "AI Agent 품질은 한 문장의 자연스러움만으로 판단하기 어렵다.\n\n업무형 인터페이스에서는 사용자가 어떤 맥락에서 질문했는지, 어떤 입력값이 부족한지, 어떤 예외 조건을 확인해야 하는지, 다음 행동이 무엇인지가 함께 드러나야 한다.\n\n이 노드는 공개 가능한 수준에서 AI Agent 품질 평가를 업무 흐름 중심으로 바라보는 관점을 정리한다.",
+      "searchText": "ai agent 품질 평가 관점 insight ai-agent llm ai agent이 실제 업무 화면에서 유용하려면 답변 품질뿐 아니라 업무 맥락 이해, 예외 대응, 다음 행동 제안까지 함께 평가해야 한다. ai-agent evaluation workflow scenario 교육 성과 분석 dashboard tool calling 요구사항 정의 도메인 시나리오 매핑 ai agent 품질은 한 문장의 자연스러움만으로 판단하기 어렵다.\n\n업무형 인터페이스에서는 사용자가 어떤 맥락에서 질문했는지, 어떤 입력값이 부족한지, 어떤 예외 조건을 확인해야 하는지, 다음 행동이 무엇인지가 함께 드러나야 한다.\n\n이 노드는 공개 가능한 수준에서 ai agent 품질 평가를 업무 흐름 중심으로 바라보는 관점을 정리한다."
+    },
+    {
+      "id": "work-history-trial-error-log",
+      "title": "시행착오 중심 작업 히스토리",
+      "type": "workflow",
+      "domains": [
+        "second-brain",
+        "llm",
+        "operations"
+      ],
+      "summary": "작업 기록을 단순 날짜 로그가 아니라 목표, 시행착오, 개선, 결과, 재사용 가능한 원칙으로 남기는 Second Brain 기록 방식이다.",
+      "tags": [
+        "work-history",
+        "handoff",
+        "trial-error",
+        "knowledge-management"
+      ],
+      "relatedNodes": [
+        {
+          "id": "second-brain-search",
+          "title": "Second Brain Search 구조",
+          "type": "supports"
+        },
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "requires"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/work-history-trial-error-log.md",
+      "lastUpdated": "2026-06-09",
+      "body": "좋은 작업 기록은 무엇을 했는지보다 왜 그렇게 바뀌었는지를 남긴다.\n\n이 방식은 목표, 시행착오, 개선, 결과, 재사용 가능한 원칙을 분리해 다음 작업자가 같은 문제를 다시 풀지 않게 만든다.\n\n공개 버전에는 원본 경로, 사람 정보, 운영 세부값을 넣지 않고 구조와 판단 기준만 남긴다.",
+      "searchText": "시행착오 중심 작업 히스토리 workflow second-brain llm operations 작업 기록을 단순 날짜 로그가 아니라 목표, 시행착오, 개선, 결과, 재사용 가능한 원칙으로 남기는 second brain 기록 방식이다. work-history handoff trial-error knowledge-management second brain search 구조 공개/비공개 지식 분리 ai agent 품질 평가 관점 좋은 작업 기록은 무엇을 했는지보다 왜 그렇게 바뀌었는지를 남긴다.\n\n이 방식은 목표, 시행착오, 개선, 결과, 재사용 가능한 원칙을 분리해 다음 작업자가 같은 문제를 다시 풀지 않게 만든다.\n\n공개 버전에는 원본 경로, 사람 정보, 운영 세부값을 넣지 않고 구조와 판단 기준만 남긴다."
+    },
+    {
+      "id": "operations-dashboard-next-action",
+      "title": "다음 행동 중심 운영 대시보드",
+      "type": "case",
+      "domains": [
+        "operations",
+        "dashboard",
+        "ai-agent"
+      ],
+      "summary": "업무 대시보드를 보기 좋은 요약 화면이 아니라 상태, 다음 행동, 예외 처리를 먼저 보여주는 운영 판단 도구로 바꾸는 방식이다.",
+      "tags": [
+        "dashboard",
+        "next-action",
+        "operations",
+        "workflow"
+      ],
+      "relatedNodes": [
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "improves"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "derived-from"
+        },
+        {
+          "id": "work-history-trial-error-log",
+          "title": "시행착오 중심 작업 히스토리",
+          "type": "derived-from"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-05",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/operations-dashboard-next-action.md",
+      "lastUpdated": "2026-06-09",
+      "body": "운영 대시보드는 전체 현황을 예쁘게 보여주는 것만으로는 부족하다.\n\n반복 업무에서는 사용자가 지금 무엇을 먼저 확인해야 하는지, 어느 상태가 밀렸는지, 어떤 예외를 처리해야 하는지가 먼저 보여야 한다.\n\n이 노드는 민감한 업무 자료 없이 대시보드 설계 원칙만 공개 가능한 형태로 정리한다.",
+      "searchText": "다음 행동 중심 운영 대시보드 case operations dashboard ai-agent 업무 대시보드를 보기 좋은 요약 화면이 아니라 상태, 다음 행동, 예외 처리를 먼저 보여주는 운영 판단 도구로 바꾸는 방식이다. dashboard next-action operations workflow 교육 성과 분석 dashboard 고객 요구사항 분석 시행착오 중심 작업 히스토리 운영 대시보드는 전체 현황을 예쁘게 보여주는 것만으로는 부족하다.\n\n반복 업무에서는 사용자가 지금 무엇을 먼저 확인해야 하는지, 어느 상태가 밀렸는지, 어떤 예외를 처리해야 하는지가 먼저 보여야 한다.\n\n이 노드는 민감한 업무 자료 없이 대시보드 설계 원칙만 공개 가능한 형태로 정리한다."
+    },
+    {
+      "id": "education-visual-onboarding",
+      "title": "초보자 교육 시각화",
+      "type": "case",
+      "domains": [
+        "education",
+        "ai-agent",
+        "workflow"
+      ],
+      "summary": "초보자 교육 자료를 긴 설명서가 아니라 짧은 상황, 대화 예시, 시각 자료, 다음 행동으로 바꾸는 설계 방식이다.",
+      "tags": [
+        "education",
+        "onboarding",
+        "visual-guide",
+        "scenario"
+      ],
+      "relatedNodes": [
+        {
+          "id": "branch-onboarding-workflow",
+          "title": "지점 온보딩 Workflow",
+          "type": "supports"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "instantiates"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "requires"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-visual-onboarding.md",
+      "lastUpdated": "2026-06-09",
+      "body": "초보자 교육은 많은 정보를 한 번에 전달하는 방식보다 첫 행동을 쉽게 만드는 구성이 더 효과적이다.\n\n상황 이해, 짧은 대화, 핵심 포인트, 다음 행동을 분리하면 교육 자료가 읽는 문서에서 실행을 돕는 도구로 바뀐다.\n\n이 노드는 구체적인 상품 조건이나 실제 대화 내용을 포함하지 않는다.",
+      "searchText": "초보자 교육 시각화 case education ai-agent workflow 초보자 교육 자료를 긴 설명서가 아니라 짧은 상황, 대화 예시, 시각 자료, 다음 행동으로 바꾸는 설계 방식이다. education onboarding visual-guide scenario 지점 온보딩 workflow 보험 상품 설명 ai 시나리오 도메인 시나리오 매핑 초보자 교육은 많은 정보를 한 번에 전달하는 방식보다 첫 행동을 쉽게 만드는 구성이 더 효과적이다.\n\n상황 이해, 짧은 대화, 핵심 포인트, 다음 행동을 분리하면 교육 자료가 읽는 문서에서 실행을 돕는 도구로 바뀐다.\n\n이 노드는 구체적인 상품 조건이나 실제 대화 내용을 포함하지 않는다."
+    },
+    {
+      "id": "policy-freshness-check",
+      "title": "날짜성 정책 자료 검증",
+      "type": "workflow",
+      "domains": [
+        "research",
+        "operations",
+        "llm"
+      ],
+      "summary": "지원 제도, 플랫폼 정책, 요율처럼 시간이 지나면 바뀌는 자료를 저장된 답이 아니라 재검증 출발점으로 관리하는 방식이다.",
+      "tags": [
+        "freshness",
+        "policy",
+        "research",
+        "verification"
+      ],
+      "relatedNodes": [
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "requires"
+        },
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "supports"
+        },
+        {
+          "id": "work-history-trial-error-log",
+          "title": "시행착오 중심 작업 히스토리",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-04",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/policy-freshness-check.md",
+      "lastUpdated": "2026-06-09",
+      "body": "정책, 요율, 신청 조건, 플랫폼 기준은 저장해 두었다고 해서 현재 사실이 되지 않는다.\n\nSecond Brain에서는 이런 자료를 답변 원문이 아니라 확인 날짜와 재검증 경로가 있는 출발점으로 다룬다.\n\n이 노드는 구체적인 금액, 조건, 기관별 세부값 없이 최신성 검증 구조만 설명한다.",
+      "searchText": "날짜성 정책 자료 검증 workflow research operations llm 지원 제도, 플랫폼 정책, 요율처럼 시간이 지나면 바뀌는 자료를 저장된 답이 아니라 재검증 출발점으로 관리하는 방식이다. freshness policy research verification tool calling 요구사항 정의 공개/비공개 지식 분리 시행착오 중심 작업 히스토리 정책, 요율, 신청 조건, 플랫폼 기준은 저장해 두었다고 해서 현재 사실이 되지 않는다.\n\nsecond brain에서는 이런 자료를 답변 원문이 아니라 확인 날짜와 재검증 경로가 있는 출발점으로 다룬다.\n\n이 노드는 구체적인 금액, 조건, 기관별 세부값 없이 최신성 검증 구조만 설명한다."
+    },
+    {
+      "id": "global-commerce-regulation-margin",
+      "title": "해외판매 규정과 마진 동시 검토",
+      "type": "case",
+      "domains": [
+        "ecommerce",
+        "research",
+        "operations"
+      ],
+      "summary": "해외판매 후보를 볼 때 국가별 제한, 배송 조건, 판매 가능성, 수익성을 한 흐름에서 같이 검토하는 방식이다.",
+      "tags": [
+        "global-commerce",
+        "regulation",
+        "margin",
+        "marketplace"
+      ],
+      "relatedNodes": [
+        {
+          "id": "policy-freshness-check",
+          "title": "날짜성 정책 자료 검증",
+          "type": "requires"
+        },
+        {
+          "id": "prompt-library-ecommerce-detail-pages",
+          "title": "이커머스 상세페이지 Prompt Library",
+          "type": "supports"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "instantiates"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-04"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/global-commerce-regulation-margin.md",
+      "lastUpdated": "2026-06-09",
+      "body": "해외판매 검토는 상품이 좋아 보이는지보다 실제로 올릴 수 있는지와 팔아도 남는지를 함께 봐야 한다.\n\n국가별 제한, 배송 조건, 수익성 기준이 분리되어 있으면 판단이 느려지고 실수가 늘어난다.\n\n이 노드는 특정 플랫폼의 최신 규정값을 제공하지 않고 검토 구조만 공개한다.",
+      "searchText": "해외판매 규정과 마진 동시 검토 case ecommerce research operations 해외판매 후보를 볼 때 국가별 제한, 배송 조건, 판매 가능성, 수익성을 한 흐름에서 같이 검토하는 방식이다. global-commerce regulation margin marketplace 날짜성 정책 자료 검증 이커머스 상세페이지 prompt library 도메인 시나리오 매핑 해외판매 검토는 상품이 좋아 보이는지보다 실제로 올릴 수 있는지와 팔아도 남는지를 함께 봐야 한다.\n\n국가별 제한, 배송 조건, 수익성 기준이 분리되어 있으면 판단이 느려지고 실수가 늘어난다.\n\n이 노드는 특정 플랫폼의 최신 규정값을 제공하지 않고 검토 구조만 공개한다."
+    },
+    {
+      "id": "brand-channel-validation",
+      "title": "브랜드 자산의 채널 검증",
+      "type": "case",
+      "domains": [
+        "brand",
+        "ecommerce",
+        "workflow"
+      ],
+      "summary": "브랜드 자료를 감성 콘셉트로만 남기지 않고 판매 채널, 상품 설명, 이미지, 규정, 배송 조건에 맞춰 검증하는 방식이다.",
+      "tags": [
+        "brand",
+        "channel",
+        "commerce",
+        "asset-workflow"
+      ],
+      "relatedNodes": [
+        {
+          "id": "global-commerce-regulation-margin",
+          "title": "해외판매 규정과 마진 동시 검토",
+          "type": "requires"
+        },
+        {
+          "id": "prompt-library-ecommerce-detail-pages",
+          "title": "이커머스 상세페이지 Prompt Library",
+          "type": "supports"
+        },
+        {
+          "id": "work-history-trial-error-log",
+          "title": "시행착오 중심 작업 히스토리",
+          "type": "derived-from"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-04"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/brand-channel-validation.md",
+      "lastUpdated": "2026-06-09",
+      "body": "브랜드 자산은 예쁜 문구와 이미지로 끝나면 실행으로 이어지기 어렵다.\n\n판매 채널에서 필요한 설명, 이미지, 규정, 배송 조건을 함께 통과해야 실제 운영 단위가 된다.\n\n이 노드는 미공개 브랜드 전략이나 수치를 포함하지 않고 채널 검증 원칙만 설명한다.",
+      "searchText": "브랜드 자산의 채널 검증 case brand ecommerce workflow 브랜드 자료를 감성 콘셉트로만 남기지 않고 판매 채널, 상품 설명, 이미지, 규정, 배송 조건에 맞춰 검증하는 방식이다. brand channel commerce asset-workflow 해외판매 규정과 마진 동시 검토 이커머스 상세페이지 prompt library 시행착오 중심 작업 히스토리 브랜드 자산은 예쁜 문구와 이미지로 끝나면 실행으로 이어지기 어렵다.\n\n판매 채널에서 필요한 설명, 이미지, 규정, 배송 조건을 함께 통과해야 실제 운영 단위가 된다.\n\n이 노드는 미공개 브랜드 전략이나 수치를 포함하지 않고 채널 검증 원칙만 설명한다."
+    },
+    {
+      "id": "cross-device-handoff-system",
+      "title": "집과 회사 작업 연속성",
+      "type": "workflow",
+      "domains": [
+        "operations",
+        "second-brain",
+        "handoff"
+      ],
+      "summary": "여러 PC와 여러 AI 도구 사이에서 작업을 이어가기 위해 원본, 상태, 캐시, 실행 지침, 핸드오프 문서를 분리하는 운영 방식이다.",
+      "tags": [
+        "handoff",
+        "multi-device",
+        "continuity",
+        "workspace-routing"
+      ],
+      "relatedNodes": [
+        {
+          "id": "second-brain-search",
+          "title": "Second Brain Search 구조",
+          "type": "supports"
+        },
+        {
+          "id": "work-history-trial-error-log",
+          "title": "시행착오 중심 작업 히스토리",
+          "type": "supports"
+        },
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "requires"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/cross-device-handoff-system.md",
+      "lastUpdated": "2026-06-09",
+      "body": "여러 컴퓨터와 여러 AI 도구를 쓰면 작업 위치보다 이어받는 기준이 더 중요해진다.\n\n원본 자료, 실행 상태, 임시 파일, 작업 지침, 핸드오프 문서를 분리하면 다른 환경에서도 작업을 다시 시작하기 쉽다.\n\n이 노드는 실제 로컬 경로와 민감한 설정 없이 운영 구조만 공개한다.",
+      "searchText": "집과 회사 작업 연속성 workflow operations second-brain handoff 여러 pc와 여러 ai 도구 사이에서 작업을 이어가기 위해 원본, 상태, 캐시, 실행 지침, 핸드오프 문서를 분리하는 운영 방식이다. handoff multi-device continuity workspace-routing second brain search 구조 시행착오 중심 작업 히스토리 공개/비공개 지식 분리 여러 컴퓨터와 여러 ai 도구를 쓰면 작업 위치보다 이어받는 기준이 더 중요해진다.\n\n원본 자료, 실행 상태, 임시 파일, 작업 지침, 핸드오프 문서를 분리하면 다른 환경에서도 작업을 다시 시작하기 쉽다.\n\n이 노드는 실제 로컬 경로와 민감한 설정 없이 운영 구조만 공개한다."
+    },
+    {
+      "id": "ai-workflow-career-positioning",
+      "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+      "type": "skill",
+      "domains": [
+        "career",
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "보험, 교육, 물류, 제조, 해외 운영, 이커머스 경험을 현업 요구사항 분석, 데이터 구조화, Agent 동작 흐름, 검증 기준으로 연결하는 공개용 커리어 축이다.",
+      "tags": [
+        "career",
+        "ai-workflow",
+        "llm",
+        "scenario",
+        "portfolio"
+      ],
+      "relatedNodes": [
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "extends"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "supports"
+        },
+        {
+          "id": "tool-calling-requirements",
+          "title": "Tool Calling 요구사항 정의",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        },
+        {
+          "id": "public-portfolio-link-hub",
+          "title": "공개 포트폴리오 링크 허브",
+          "type": "related-to"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/ai-workflow-career-positioning.md",
+      "lastUpdated": "2026-06-09",
+      "body": "현업 문제를 AI Agent 워크플로우로 전환하는 방식은 여러 산업 경험을 단순 경력 나열이 아니라 반복 가능한 문제 해결 구조로 다시 묶는 관점이다.\n\n핵심은 현업의 모호한 요청을 목적, 사용자, 입력 데이터, 출력 형식, 예외 상황, 검수 기준, 다음 행동으로 분해하는 것이다. 이 관점에서 보험 상담, 교육 운영, 영업 프로세스, 상품 설명 콘텐츠, 이커머스 상세페이지는 모두 Agent 동작 흐름, Tool Calling 요구사항, 운영 대시보드, 공개/비공개 지식 구조로 전환될 수 있다.\n\n이 노드는 특정 회사나 특정 직군 하나에 맞춘 설명이 아니라, 공개 포트폴리오에서 보여줄 수 있는 작업 방식, 사고 구조, 업무 전환 역량만 요약한다.",
+      "searchText": "현업 문제를 ai agent 워크플로우로 전환하는 방식 skill career llm ai-agent 보험, 교육, 물류, 제조, 해외 운영, 이커머스 경험을 현업 요구사항 분석, 데이터 구조화, agent 동작 흐름, 검증 기준으로 연결하는 공개용 커리어 축이다. career ai-workflow llm scenario portfolio 도메인 시나리오 매핑 고객 요구사항 분석 tool calling 요구사항 정의 ai agent 품질 평가 관점 공개 포트폴리오 링크 허브 현업 문제를 ai agent 워크플로우로 전환하는 방식은 여러 산업 경험을 단순 경력 나열이 아니라 반복 가능한 문제 해결 구조로 다시 묶는 관점이다.\n\n핵심은 현업의 모호한 요청을 목적, 사용자, 입력 데이터, 출력 형식, 예외 상황, 검수 기준, 다음 행동으로 분해하는 것이다. 이 관점에서 보험 상담, 교육 운영, 영업 프로세스, 상품 설명 콘텐츠, 이커머스 상세페이지는 모두 agent 동작 흐름, tool calling 요구사항, 운영 대시보드, 공개/비공개 지식 구조로 전환될 수 있다.\n\n이 노드는 특정 회사나 특정 직군 하나에 맞춘 설명이 아니라, 공개 포트폴리오에서 보여줄 수 있는 작업 방식, 사고 구조, 업무 전환 역량만 요약한다."
+    },
+    {
+      "id": "public-portfolio-link-hub",
+      "title": "공개 포트폴리오 링크 허브",
+      "type": "tool",
+      "domains": [
+        "career",
+        "portfolio"
+      ],
+      "summary": "공개 가능한 외부 작업 흔적을 한 곳에서 연결해 Second Brain GUI의 검색 결과와 경력 맥락을 보강하는 허브다.",
+      "tags": [
+        "portfolio",
+        "github",
+        "links",
+        "public"
+      ],
+      "relatedNodes": [
+        {
+          "id": "second-brain-search",
+          "title": "Second Brain Search 구조",
+          "type": "supports"
+        },
+        {
+          "id": "ai-workflow-career-positioning",
+          "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+          "type": "related-to"
+        },
+        {
+          "id": "kaggle-data-analysis-projects",
+          "title": "Kaggle 데이터 분석 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "GitHub profile",
+          "platform": "GITHUB",
+          "url": "https://github.com/CreedMaestro",
+          "date": "2019 Dec"
+        }
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/public-portfolio-link-hub.md",
+      "lastUpdated": "2026-06-09",
+      "body": "공개 포트폴리오 링크 허브는 검색 가능한 경력 서사와 실제 외부 작업 흔적을 연결한다.\n\n현재 공개 링크로는 GitHub 프로필 `https://github.com/CreedMaestro`를 연결할 수 있다. Kaggle 관련 학습 프로젝트와 번역 작업은 별도 노드로 분리해, 데이터 분석 기초 역량과 현재 AI Workflow 포지셔닝 사이의 연결을 설명한다.\n\n개인 식별 정보와 공개 목적에 맞지 않는 세부 조건은 이 허브에 포함하지 않는다.",
+      "searchText": "공개 포트폴리오 링크 허브 tool career portfolio 공개 가능한 외부 작업 흔적을 한 곳에서 연결해 second brain gui의 검색 결과와 경력 맥락을 보강하는 허브다. portfolio github links public second brain search 구조 현업 문제를 ai agent 워크플로우로 전환하는 방식 kaggle 데이터 분석 프로젝트 데이터 분석 교육 기반 공개 포트폴리오 링크 허브는 검색 가능한 경력 서사와 실제 외부 작업 흔적을 연결한다.\n\n현재 공개 링크로는 github 프로필 `https://github.com/creedmaestro`를 연결할 수 있다. kaggle 관련 학습 프로젝트와 번역 작업은 별도 노드로 분리해, 데이터 분석 기초 역량과 현재 ai workflow 포지셔닝 사이의 연결을 설명한다.\n\n개인 식별 정보와 공개 목적에 맞지 않는 세부 조건은 이 허브에 포함하지 않는다."
+    },
+    {
+      "id": "kaggle-data-analysis-projects",
+      "title": "Kaggle 데이터 분석 프로젝트",
+      "type": "case",
+      "domains": [
+        "data",
+        "portfolio",
+        "education"
+      ],
+      "summary": "Kaggle 커널 번역과 주택 가격 예측 프로젝트를 통해 데이터 탐색, 분석, 시각화, 모델링의 의사결정 흐름을 학습한 공개 작업 기록이다.",
+      "tags": [
+        "kaggle",
+        "data-analysis",
+        "translation",
+        "r",
+        "portfolio"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "instantiates"
+        },
+        {
+          "id": "public-portfolio-link-hub",
+          "title": "공개 포트폴리오 링크 허브",
+          "type": "related-to"
+        },
+        {
+          "id": "ai-workflow-career-positioning",
+          "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+          "type": "supports"
+        },
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "일식당 고객 예측 커널 번역",
+          "platform": "TISTORY",
+          "url": "https://kaggle-kr.tistory.com/33?category=867842",
+          "date": "2019-06-11"
+        },
+        {
+          "label": "Boston 집값 예측 커널 번역",
+          "platform": "TISTORY",
+          "url": "https://kaggle-kr.tistory.com/27?category=867842",
+          "date": "2019-05-19"
+        },
+        {
+          "label": "Seattle 집값 예측 프로젝트",
+          "platform": "PROJECT",
+          "url": "http://bit.ly/KaggleHouseProject",
+          "date": "2019-04-14"
+        },
+        {
+          "label": "Kaggle House Price Prediction notebook",
+          "platform": "KAGGLE",
+          "url": "https://www.kaggle.com/code/maestroyi/house-price-prediction-with-r-eda-fe",
+          "date": "2019-04 - 2019-05"
+        }
+      ],
+      "period": {
+        "start": "2019-04",
+        "end": "2019-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/kaggle-data-analysis-projects.md",
+      "lastUpdated": "2026-06-09",
+      "body": "Kaggle 데이터 분석 프로젝트는 데이터 분석을 단순 도구 사용이 아니라 문제 설정, 데이터 탐색, 분석, 시각화, 피처 엔지니어링, 모델링, 설명으로 이어지는 흐름으로 익힌 기록이다.\n\n공개 작업에는 Kaggle Korea 커널 한글 번역과 Seattle 주택 가격 예측 프로젝트가 포함된다.\n\n- 일식당 고객 예측 커널 번역: `https://kaggle-kr.tistory.com/33?category=867842`\n- Boston 집값 예측 커널 번역: `https://kaggle-kr.tistory.com/27?category=867842`\n- Seattle 집값 예측 프로젝트: `http://bit.ly/KaggleHouseProject`\n- Kaggle Notebook: `https://www.kaggle.com/code/maestroyi/house-price-prediction-with-r-eda-fe`\n\n이 프로젝트에서는 R을 활용해 로그데이터 추출부터 전처리, EDA, FE, 모델링까지 데이터 분석의 전 과정을 수행했다. 이 과정에서 통계 지식, Python 학습, SQL 데이터 추출의 필요성을 확인했고, 이후 교육 프로젝트로 보완했다.\n\n이 경험은 현재 포트폴리오에서 교육 데이터, 영업 실적, 업무 지표를 분석 가능한 구조로 바꾸는 기반 역량으로 연결된다.",
+      "searchText": "kaggle 데이터 분석 프로젝트 case data portfolio education kaggle 커널 번역과 주택 가격 예측 프로젝트를 통해 데이터 탐색, 분석, 시각화, 모델링의 의사결정 흐름을 학습한 공개 작업 기록이다. kaggle data-analysis translation r portfolio 데이터 분석 교육 기반 공개 포트폴리오 링크 허브 현업 문제를 ai agent 워크플로우로 전환하는 방식 교육 성과 분석 dashboard kaggle 데이터 분석 프로젝트는 데이터 분석을 단순 도구 사용이 아니라 문제 설정, 데이터 탐색, 분석, 시각화, 피처 엔지니어링, 모델링, 설명으로 이어지는 흐름으로 익힌 기록이다.\n\n공개 작업에는 kaggle korea 커널 한글 번역과 seattle 주택 가격 예측 프로젝트가 포함된다.\n\n- 일식당 고객 예측 커널 번역: `https://kaggle-kr.tistory.com/33?category=867842`\n- boston 집값 예측 커널 번역: `https://kaggle-kr.tistory.com/27?category=867842`\n- seattle 집값 예측 프로젝트: `http://bit.ly/kagglehouseproject`\n- kaggle notebook: `https://www.kaggle.com/code/maestroyi/house-price-prediction-with-r-eda-fe`\n\n이 프로젝트에서는 r을 활용해 로그데이터 추출부터 전처리, eda, fe, 모델링까지 데이터 분석의 전 과정을 수행했다. 이 과정에서 통계 지식, python 학습, sql 데이터 추출의 필요성을 확인했고, 이후 교육 프로젝트로 보완했다.\n\n이 경험은 현재 포트폴리오에서 교육 데이터, 영업 실적, 업무 지표를 분석 가능한 구조로 바꾸는 기반 역량으로 연결된다."
+    },
+    {
+      "id": "data-education-foundation",
+      "title": "데이터 분석 교육 기반",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "analysis"
+      ],
+      "summary": "Python, SQL, Tableau, 선형대수, CRM/Product Analysis 학습을 통해 현업 데이터를 지표와 의사결정 흐름으로 바꾸는 기반을 만든 교육 이력이다.",
+      "tags": [
+        "python",
+        "sql",
+        "tableau",
+        "crm",
+        "product-analysis",
+        "education"
+      ],
+      "relatedNodes": [
+        {
+          "id": "kaggle-data-analysis-projects",
+          "title": "Kaggle 데이터 분석 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "education-python-data-analysis",
+          "title": "Python 데이터 분석 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-sql-customer-analysis",
+          "title": "SQL 고객 데이터 분석 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-tableau-dashboard",
+          "title": "Tableau 대시보드 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-linear-algebra-statistics",
+          "title": "수리통계와 선형대수 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-product-analysis",
+          "title": "Product Analysis 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-crm-analysis",
+          "title": "CRM Analysis 교육 프로젝트",
+          "type": "instantiates"
+        },
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        },
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2019-04",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/data-education-foundation.md",
+      "lastUpdated": "2026-06-09",
+      "body": "데이터 분석 교육 기반은 현업 데이터를 읽고, 분석하고, 설명 가능한 형태로 바꾸기 위해 쌓은 기초 역량이다.\n\n학습 범위는 Python 분석 문법과 pandas, numpy, matplotlib, seaborn 같은 분석 도구, SQL 데이터 추출, Tableau 시각화, 수리통계와 선형대수, Product Analysis, CRM Analysis, Kaggle 프로젝트로 이어진다.\n\n이 교육 이력은 Second Brain 포트폴리오에서 단순한 학습 기록이 아니라, 교육 성과 분석, 운영 대시보드, AI Agent 품질 평가처럼 지표와 검증이 필요한 작업을 뒷받침하는 배경 지식으로 쓰인다.",
+      "searchText": "데이터 분석 교육 기반 skill data education analysis python, sql, tableau, 선형대수, crm/product analysis 학습을 통해 현업 데이터를 지표와 의사결정 흐름으로 바꾸는 기반을 만든 교육 이력이다. python sql tableau crm product-analysis education kaggle 데이터 분석 프로젝트 python 데이터 분석 교육 프로젝트 sql 고객 데이터 분석 교육 프로젝트 tableau 대시보드 교육 프로젝트 수리통계와 선형대수 교육 프로젝트 product analysis 교육 프로젝트 crm analysis 교육 프로젝트 교육 성과 분석 dashboard ai agent 품질 평가 관점 다음 행동 중심 운영 대시보드 데이터 분석 교육 기반은 현업 데이터를 읽고, 분석하고, 설명 가능한 형태로 바꾸기 위해 쌓은 기초 역량이다.\n\n학습 범위는 python 분석 문법과 pandas, numpy, matplotlib, seaborn 같은 분석 도구, sql 데이터 추출, tableau 시각화, 수리통계와 선형대수, product analysis, crm analysis, kaggle 프로젝트로 이어진다.\n\n이 교육 이력은 second brain 포트폴리오에서 단순한 학습 기록이 아니라, 교육 성과 분석, 운영 대시보드, ai agent 품질 평가처럼 지표와 검증이 필요한 작업을 뒷받침하는 배경 지식으로 쓰인다."
+    },
+    {
+      "id": "education-python-data-analysis",
+      "title": "Python 데이터 분석 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "python"
+      ],
+      "summary": "Python 기초 문법과 pandas, numpy, DataFrame, matplotlib, seaborn, Selenium 크롤링을 익힌 데이터 분석 교육 프로젝트다.",
+      "tags": [
+        "python",
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "seaborn",
+        "crawling"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "kaggle-data-analysis-projects",
+          "title": "Kaggle 데이터 분석 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "education-sql-customer-analysis",
+          "title": "SQL 고객 데이터 분석 교육 프로젝트",
+          "type": "related-to"
+        },
+        {
+          "id": "ai-workflow-career-positioning",
+          "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+          "type": "supports"
+        }
+      ],
+      "sources": [],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-11"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-python-data-analysis.md",
+      "lastUpdated": "2026-06-09",
+      "body": "Python 데이터 분석 교육 프로젝트는 분석에 필요한 기초 문법과 패키지를 익히기 위한 개인 스터디다.\n\n성과:\n\n- 데이터 타입, 조건문, 반복문, 함수 활용법 학습\n- pandas, numpy, DataFrame, matplotlib, seaborn 기반 분석 기초 습득\n- Selenium 기반 크롤링 경험\n- 개발자와 엔지니어와 소통하기 위한 Python 기초 문법과 제반 지식 확보\n\n프로젝트 진행 기간은 2022.11 ~ 2022.11이다.",
+      "searchText": "python 데이터 분석 교육 프로젝트 skill data education python python 기초 문법과 pandas, numpy, dataframe, matplotlib, seaborn, selenium 크롤링을 익힌 데이터 분석 교육 프로젝트다. python pandas numpy matplotlib seaborn crawling 데이터 분석 교육 기반 kaggle 데이터 분석 프로젝트 sql 고객 데이터 분석 교육 프로젝트 현업 문제를 ai agent 워크플로우로 전환하는 방식 python 데이터 분석 교육 프로젝트는 분석에 필요한 기초 문법과 패키지를 익히기 위한 개인 스터디다.\n\n성과:\n\n- 데이터 타입, 조건문, 반복문, 함수 활용법 학습\n- pandas, numpy, dataframe, matplotlib, seaborn 기반 분석 기초 습득\n- selenium 기반 크롤링 경험\n- 개발자와 엔지니어와 소통하기 위한 python 기초 문법과 제반 지식 확보\n\n프로젝트 진행 기간은 2022.11 ~ 2022.11이다."
+    },
+    {
+      "id": "education-sql-customer-analysis",
+      "title": "SQL 고객 데이터 분석 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "sql"
+      ],
+      "summary": "고객 데이터를 활용한 SQL 데이터 분석 강의를 통해 데이터 추출, 조건 필터링, 집계, 조인, 서브쿼리, 분석 함수를 학습한 프로젝트다.",
+      "tags": [
+        "sql",
+        "customer-data",
+        "database",
+        "join",
+        "subquery",
+        "analytics"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "education-python-data-analysis",
+          "title": "Python 데이터 분석 교육 프로젝트",
+          "type": "related-to"
+        },
+        {
+          "id": "education-crm-analysis",
+          "title": "CRM Analysis 교육 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "고객 데이터를 활용한 SQL 데이터 분석",
+          "platform": "LEARNINGSPOONS",
+          "url": "https://learningspoons.com/course/detail/sql/",
+          "date": "2022-11"
+        }
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-11"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-sql-customer-analysis.md",
+      "lastUpdated": "2026-06-09",
+      "body": "SQL 고객 데이터 분석 교육 프로젝트는 데이터 로딩과 추출을 SQL로 처리하는 것이 분석 리소스 측면에서 효율적이라는 판단에서 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/sql/`\n\n성과:\n\n- SELECT, FROM, WHERE, ORDER BY 기반 조회와 필터링 학습\n- GROUP BY, HAVING, 집계함수 기반 간단한 통계 처리\n- INNER JOIN, OUTER JOIN, UNION, WITH, VIEW 활용\n- 서브쿼리, 순위함수, 날짜 함수, 문자열 함수 등 분석용 SQL 문법 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.11이다.",
+      "searchText": "sql 고객 데이터 분석 교육 프로젝트 skill data education sql 고객 데이터를 활용한 sql 데이터 분석 강의를 통해 데이터 추출, 조건 필터링, 집계, 조인, 서브쿼리, 분석 함수를 학습한 프로젝트다. sql customer-data database join subquery analytics 데이터 분석 교육 기반 python 데이터 분석 교육 프로젝트 crm analysis 교육 프로젝트 다음 행동 중심 운영 대시보드 sql 고객 데이터 분석 교육 프로젝트는 데이터 로딩과 추출을 sql로 처리하는 것이 분석 리소스 측면에서 효율적이라는 판단에서 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/sql/`\n\n성과:\n\n- select, from, where, order by 기반 조회와 필터링 학습\n- group by, having, 집계함수 기반 간단한 통계 처리\n- inner join, outer join, union, with, view 활용\n- 서브쿼리, 순위함수, 날짜 함수, 문자열 함수 등 분석용 sql 문법 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.11이다."
+    },
+    {
+      "id": "education-tableau-dashboard",
+      "title": "Tableau 대시보드 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "dashboard"
+      ],
+      "summary": "Tableau 데이터 시각화 강의를 통해 맞춤형 대시보드, 차트, 계산식, LOD, 매개변수, 동작 필터를 학습한 프로젝트다.",
+      "tags": [
+        "tableau",
+        "dashboard",
+        "visualization",
+        "lod",
+        "bi"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "supports"
+        },
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "supports"
+        },
+        {
+          "id": "education-sql-customer-analysis",
+          "title": "SQL 고객 데이터 분석 교육 프로젝트",
+          "type": "related-to"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Tableau Lecture Third Day",
+          "platform": "TABLEAU",
+          "url": "https://public.tableau.com/views/TableauLectureThirdday/sheet7?:language=en-US&:display_count=n&:origin=viz_share_link",
+          "date": "2022-11 - 2022-12"
+        },
+        {
+          "label": "Tableau Lecture Sales Dashboard",
+          "platform": "TABLEAU",
+          "url": "https://public.tableau.com/views/TableauLectureSecondDay/SalesDashboard?:language=en-US&:display_count=n&:origin=viz_share_link",
+          "date": "2022-11 - 2022-12"
+        },
+        {
+          "label": "Tableau 데이터 시각화 강의",
+          "platform": "LEARNINGSPOONS",
+          "url": "https://learningspoons.com/course/detail/tableau_data/",
+          "date": "2022-11 - 2022-12"
+        }
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-tableau-dashboard.md",
+      "lastUpdated": "2026-06-09",
+      "body": "Tableau 대시보드 교육 프로젝트는 Python이나 R 시각화로는 한 페이지에 압축적으로 표현하기 어려웠던 대시보드 구성을 보완하기 위해 진행한 개인 스터디다.\n\n공개 결과물:\n\n- Tableau Lecture Third Day: `https://public.tableau.com/views/TableauLectureThirdday/sheet7?:language=en-US&:display_count=n&:origin=viz_share_link`\n- Tableau Lecture Sales Dashboard: `https://public.tableau.com/views/TableauLectureSecondDay/SalesDashboard?:language=en-US&:display_count=n&:origin=viz_share_link`\n- 강의 링크: `https://learningspoons.com/course/detail/tableau_data/`\n\n성과:\n\n- 데이터 시각화를 Tableau로 표현\n- BI 담당자와 소통하기 위한 기본 전처리와 요청 역량 확보\n- 막대차트, 라인차트, 파이차트, 도넛차트, 워드 클라우드, 지도, 버블 차트 학습\n- 계산식, DATE 계산식, LOD, 컨테이너, 매개변수, 동작 필터, 대시보드 디자인 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.12이다.",
+      "searchText": "tableau 대시보드 교육 프로젝트 skill data education dashboard tableau 데이터 시각화 강의를 통해 맞춤형 대시보드, 차트, 계산식, lod, 매개변수, 동작 필터를 학습한 프로젝트다. tableau dashboard visualization lod bi 데이터 분석 교육 기반 교육 성과 분석 dashboard 다음 행동 중심 운영 대시보드 sql 고객 데이터 분석 교육 프로젝트 tableau 대시보드 교육 프로젝트는 python이나 r 시각화로는 한 페이지에 압축적으로 표현하기 어려웠던 대시보드 구성을 보완하기 위해 진행한 개인 스터디다.\n\n공개 결과물:\n\n- tableau lecture third day: `https://public.tableau.com/views/tableaulecturethirdday/sheet7?:language=en-us&:display_count=n&:origin=viz_share_link`\n- tableau lecture sales dashboard: `https://public.tableau.com/views/tableaulecturesecondday/salesdashboard?:language=en-us&:display_count=n&:origin=viz_share_link`\n- 강의 링크: `https://learningspoons.com/course/detail/tableau_data/`\n\n성과:\n\n- 데이터 시각화를 tableau로 표현\n- bi 담당자와 소통하기 위한 기본 전처리와 요청 역량 확보\n- 막대차트, 라인차트, 파이차트, 도넛차트, 워드 클라우드, 지도, 버블 차트 학습\n- 계산식, date 계산식, lod, 컨테이너, 매개변수, 동작 필터, 대시보드 디자인 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.12이다."
+    },
+    {
+      "id": "education-linear-algebra-statistics",
+      "title": "수리통계와 선형대수 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "math"
+      ],
+      "summary": "선형대수와 기초 통계를 통해 회귀분석, ML/DL 모델링, 행렬, 벡터공간, 고윳값, 텐서 개념을 학습한 프로젝트다.",
+      "tags": [
+        "linear-algebra",
+        "statistics",
+        "machine-learning",
+        "matrix",
+        "tensor"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "kaggle-data-analysis-projects",
+          "title": "Kaggle 데이터 분석 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "education-product-analysis",
+          "title": "Product Analysis 교육 프로젝트",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "선형대수의 모든것",
+          "platform": "LEARNINGSPOONS",
+          "url": "https://learningspoons.com/course/detail/linear_algebra/",
+          "date": "2022-11 - 2022-12"
+        }
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-linear-algebra-statistics.md",
+      "lastUpdated": "2026-06-09",
+      "body": "수리통계와 선형대수 교육 프로젝트는 데이터 분석과 모델링의 효율성을 높이기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/linear_algebra/`\n\n성과:\n\n- 기초 통계 지식 습득\n- 회귀분석만으로 가능한 모델링과 ML/DL이 필요한 모델링 구분\n- ML/DL 이해에 필요한 선형대수 개념 학습\n- 스칼라, 벡터, 행렬, 행렬식, 역행렬, 벡터공간, 내적, QR분해, 고윳값, 고유벡터, 행렬분해, 텐서 개념 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.12이다.",
+      "searchText": "수리통계와 선형대수 교육 프로젝트 skill data education math 선형대수와 기초 통계를 통해 회귀분석, ml/dl 모델링, 행렬, 벡터공간, 고윳값, 텐서 개념을 학습한 프로젝트다. linear-algebra statistics machine-learning matrix tensor 데이터 분석 교육 기반 kaggle 데이터 분석 프로젝트 product analysis 교육 프로젝트 ai agent 품질 평가 관점 수리통계와 선형대수 교육 프로젝트는 데이터 분석과 모델링의 효율성을 높이기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/linear_algebra/`\n\n성과:\n\n- 기초 통계 지식 습득\n- 회귀분석만으로 가능한 모델링과 ml/dl이 필요한 모델링 구분\n- ml/dl 이해에 필요한 선형대수 개념 학습\n- 스칼라, 벡터, 행렬, 행렬식, 역행렬, 벡터공간, 내적, qr분해, 고윳값, 고유벡터, 행렬분해, 텐서 개념 학습\n\n프로젝트 진행 기간은 2022.11 ~ 2022.12이다."
+    },
+    {
+      "id": "education-product-analysis",
+      "title": "Product Analysis 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "product"
+      ],
+      "summary": "Funnel, Cohort, LTV, A/B Test를 통해 프로덕트 데이터 분석과 비즈니스 의사결정 흐름을 학습한 프로젝트다.",
+      "tags": [
+        "product-analysis",
+        "funnel",
+        "cohort",
+        "ltv",
+        "ab-test"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "education-crm-analysis",
+          "title": "CRM Analysis 교육 프로젝트",
+          "type": "related-to"
+        },
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "supports"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Product Analysis 강의",
+          "platform": "LEARNINGSPOONS",
+          "url": "https://learningspoons.com/course/detail/product_analysis/",
+          "date": "2022-12"
+        }
+      ],
+      "period": {
+        "start": "2022-12",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-product-analysis.md",
+      "lastUpdated": "2026-06-09",
+      "body": "Product Analysis 교육 프로젝트는 현업에서 비즈니스 분석에 자주 쓰이는 방법론을 학습하기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/product_analysis/`\n\n성과:\n\n- Funnel 분석으로 전환율 파악\n- Cohort 분석으로 LTV 산출\n- A/B Test의 활용과 한계점 학습\n- 데이터 전처리, 결측값 보정, 중복 확인, 아웃라이어 정의와 제거 학습\n- 고객 여정, 취약 단계, 개선 방안, 성수기와 비수기 결제 회원 차이 분석 관점 습득\n\n프로젝트 진행 기간은 2022.12 ~ 2022.12이다.",
+      "searchText": "product analysis 교육 프로젝트 skill data education product funnel, cohort, ltv, a/b test를 통해 프로덕트 데이터 분석과 비즈니스 의사결정 흐름을 학습한 프로젝트다. product-analysis funnel cohort ltv ab-test 데이터 분석 교육 기반 crm analysis 교육 프로젝트 다음 행동 중심 운영 대시보드 ai agent 품질 평가 관점 product analysis 교육 프로젝트는 현업에서 비즈니스 분석에 자주 쓰이는 방법론을 학습하기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/product_analysis/`\n\n성과:\n\n- funnel 분석으로 전환율 파악\n- cohort 분석으로 ltv 산출\n- a/b test의 활용과 한계점 학습\n- 데이터 전처리, 결측값 보정, 중복 확인, 아웃라이어 정의와 제거 학습\n- 고객 여정, 취약 단계, 개선 방안, 성수기와 비수기 결제 회원 차이 분석 관점 습득\n\n프로젝트 진행 기간은 2022.12 ~ 2022.12이다."
+    },
+    {
+      "id": "education-crm-analysis",
+      "title": "CRM Analysis 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "crm"
+      ],
+      "summary": "AARRR, RFM, 고객 세분화, 군집분석, 연관성 분석, 타겟팅, 이탈 예측을 학습한 CRM 데이터 분석 프로젝트다.",
+      "tags": [
+        "crm",
+        "aarrr",
+        "rfm",
+        "segmentation",
+        "clustering",
+        "churn"
+      ],
+      "relatedNodes": [
+        {
+          "id": "data-education-foundation",
+          "title": "데이터 분석 교육 기반",
+          "type": "supports"
+        },
+        {
+          "id": "education-product-analysis",
+          "title": "Product Analysis 교육 프로젝트",
+          "type": "related-to"
+        },
+        {
+          "id": "education-sql-customer-analysis",
+          "title": "SQL 고객 데이터 분석 교육 프로젝트",
+          "type": "requires"
+        },
+        {
+          "id": "ai-agent-quality-evaluation",
+          "title": "AI Agent 품질 평가 관점",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "CRM Analysis 강의",
+          "platform": "LEARNINGSPOONS",
+          "url": "https://learningspoons.com/course/detail/crm_analysis/",
+          "date": "2022-12"
+        }
+      ],
+      "period": {
+        "start": "2022-12",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-crm-analysis.md",
+      "lastUpdated": "2026-06-09",
+      "body": "CRM Analysis 교육 프로젝트는 고객을 분류하고 행동 패턴을 분석해 장기적인 고객 관계와 매출 상승으로 연결하는 CRM 분석 흐름을 익히기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/crm_analysis/`\n\n성과:\n\n- 고객 분석에 활용되는 지표와 지표 사용 이유 학습\n- 마케팅 부서와 협업하기 위한 분석 지식 확보\n- AARRR, RFM, 리텐션, 고객 생애 가치, 고객 세분화 학습\n- 가치기반 세분화, 행동기반 세분화, 고객 군집분석, 연관성 분석, 순차 연관성 분석 학습\n- PUSH 응답 예측, 타겟팅, 고객 이탈 예측, score card model 개념 학습\n\n프로젝트 진행 기간은 2022.12 ~ 2022.12이다.",
+      "searchText": "crm analysis 교육 프로젝트 skill data education crm aarrr, rfm, 고객 세분화, 군집분석, 연관성 분석, 타겟팅, 이탈 예측을 학습한 crm 데이터 분석 프로젝트다. crm aarrr rfm segmentation clustering churn 데이터 분석 교육 기반 product analysis 교육 프로젝트 sql 고객 데이터 분석 교육 프로젝트 ai agent 품질 평가 관점 crm analysis 교육 프로젝트는 고객을 분류하고 행동 패턴을 분석해 장기적인 고객 관계와 매출 상승으로 연결하는 crm 분석 흐름을 익히기 위해 진행한 개인 스터디다.\n\n강의 링크: `https://learningspoons.com/course/detail/crm_analysis/`\n\n성과:\n\n- 고객 분석에 활용되는 지표와 지표 사용 이유 학습\n- 마케팅 부서와 협업하기 위한 분석 지식 확보\n- aarrr, rfm, 리텐션, 고객 생애 가치, 고객 세분화 학습\n- 가치기반 세분화, 행동기반 세분화, 고객 군집분석, 연관성 분석, 순차 연관성 분석 학습\n- push 응답 예측, 타겟팅, 고객 이탈 예측, score card model 개념 학습\n\n프로젝트 진행 기간은 2022.12 ~ 2022.12이다."
+    },
+    {
+      "id": "insurance-sales-blog-financial-camp",
+      "title": "보험영업 블로그 금융 캠프",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "content",
+        "sales"
+      ],
+      "summary": "보험영업 시기에 운영한 공개 블로그를 고객 교육형 금융 콘텐츠와 직무 설명 콘텐츠의 초기 사례로 정리한 노드다.",
+      "tags": [
+        "insurance",
+        "blog",
+        "financial-planning",
+        "sales-content",
+        "portfolio"
+      ],
+      "relatedNodes": [
+        {
+          "id": "financial-planning-content-scenario",
+          "title": "고객 교육형 금융 콘텐츠",
+          "type": "supports"
+        },
+        {
+          "id": "sfp-recruiting-education-content",
+          "title": "SFP 설명과 교육 콘텐츠",
+          "type": "supports"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "derived-from"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "금융 캠프 블로그",
+          "platform": "NAVER BLOG",
+          "url": "https://blog.naver.com/wealthagora",
+          "date": "2013-04 - 2014-05"
+        },
+        {
+          "label": "금융 캠프 RSS",
+          "platform": "RSS",
+          "url": "https://rss.blog.naver.com/wealthagora.xml",
+          "date": "2013-04 - 2014-05"
+        }
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/insurance-sales-blog-financial-camp.md",
+      "lastUpdated": "2026-06-09",
+      "body": "보험영업 블로그 금융 캠프는 공개 RSS 기준 2013-04-17부터 2014-05-26까지 확인되는 금융/보험 콘텐츠 기록이다.\n\n공개 RSS에는 50개 글이 확인되며, 주제는 금리비교, 재무설계, SFP 직무 설명, 보험, 세미나, 금융 기본 개념 등으로 나뉜다. 이 노드는 원문을 복사하지 않고, 포트폴리오에서 보여줄 수 있는 공개 요약만 담는다.\n\n핵심 의미는 보험영업을 단순 상품 설명으로만 다루지 않고, 고객이 이해해야 하는 금융 개념과 의사결정 기준을 먼저 풀어낸 점이다. 이후 보험 상품 설명 AI 시나리오, 고객 요구사항 분석, 업무형 AI 콘텐츠 설계로 연결되는 초기 경험으로 볼 수 있다.\n\n대표 공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- RSS: `https://rss.blog.naver.com/wealthagora.xml`",
+      "searchText": "보험영업 블로그 금융 캠프 case insurance content sales 보험영업 시기에 운영한 공개 블로그를 고객 교육형 금융 콘텐츠와 직무 설명 콘텐츠의 초기 사례로 정리한 노드다. insurance blog financial-planning sales-content portfolio 고객 교육형 금융 콘텐츠 sfp 설명과 교육 콘텐츠 보험 상품 설명 ai 시나리오 고객 요구사항 분석 보험영업 블로그 금융 캠프는 공개 rss 기준 2013-04-17부터 2014-05-26까지 확인되는 금융/보험 콘텐츠 기록이다.\n\n공개 rss에는 50개 글이 확인되며, 주제는 금리비교, 재무설계, sfp 직무 설명, 보험, 세미나, 금융 기본 개념 등으로 나뉜다. 이 노드는 원문을 복사하지 않고, 포트폴리오에서 보여줄 수 있는 공개 요약만 담는다.\n\n핵심 의미는 보험영업을 단순 상품 설명으로만 다루지 않고, 고객이 이해해야 하는 금융 개념과 의사결정 기준을 먼저 풀어낸 점이다. 이후 보험 상품 설명 ai 시나리오, 고객 요구사항 분석, 업무형 ai 콘텐츠 설계로 연결되는 초기 경험으로 볼 수 있다.\n\n대표 공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- rss: `https://rss.blog.naver.com/wealthagora.xml`"
+    },
+    {
+      "id": "financial-planning-content-scenario",
+      "title": "고객 교육형 금융 콘텐츠",
+      "type": "scenario",
+      "domains": [
+        "insurance",
+        "content",
+        "finance"
+      ],
+      "summary": "재무설계, 금리비교, 보험 설명 글을 고객의 이해 흐름에 맞춰 구성했던 공개 블로그 기반 콘텐츠 시나리오다.",
+      "tags": [
+        "financial-planning",
+        "insurance",
+        "customer-education",
+        "content-strategy"
+      ],
+      "relatedNodes": [
+        {
+          "id": "insurance-sales-blog-financial-camp",
+          "title": "보험영업 블로그 금융 캠프",
+          "type": "derived-from"
+        },
+        {
+          "id": "insurance-product-ai-scenario",
+          "title": "보험 상품 설명 AI 시나리오",
+          "type": "supports"
+        },
+        {
+          "id": "domain-scenario-mapping",
+          "title": "도메인 시나리오 매핑",
+          "type": "instantiates"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "금융 캠프 블로그",
+          "platform": "NAVER BLOG",
+          "url": "https://blog.naver.com/wealthagora",
+          "date": "2013-04 - 2014-05"
+        },
+        {
+          "label": "금융 캠프 RSS",
+          "platform": "RSS",
+          "url": "https://rss.blog.naver.com/wealthagora.xml",
+          "date": "2013-04 - 2014-05"
+        }
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/financial-planning-content-scenario.md",
+      "lastUpdated": "2026-06-09",
+      "body": "고객 교육형 금융 콘텐츠는 보험영업 시기에 운영한 공개 블로그에서 확인되는 재무설계와 금융 기본 설명 흐름이다.\n\n대표 주제는 현재 재무상태 확인, 돈을 모으는 기준, 가로저축과 세로저축, 단리와 복리, 분산투자원칙, CMA와 예금자보호, 정기예금/정기적금/CMA 금리비교, 사회초년생 보험, 보험 상품 활용 방식이다.\n\n이 콘텐츠의 구조는 특정 상품을 바로 권하는 방식보다, 고객이 먼저 이해해야 하는 판단 기준을 설명하고 그 다음 상품이나 행동으로 넘어가는 방식에 가깝다. 이 관점은 현재 포트폴리오의 보험 상품 설명 AI 시나리오와도 연결된다. AI가 답변할 때도 상품명만 말하는 것이 아니라, 조건 확인, 금지 표현, 다음 질문, 비교 기준을 먼저 세워야 하기 때문이다.\n\n공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- RSS: `https://rss.blog.naver.com/wealthagora.xml`",
+      "searchText": "고객 교육형 금융 콘텐츠 scenario insurance content finance 재무설계, 금리비교, 보험 설명 글을 고객의 이해 흐름에 맞춰 구성했던 공개 블로그 기반 콘텐츠 시나리오다. financial-planning insurance customer-education content-strategy 보험영업 블로그 금융 캠프 보험 상품 설명 ai 시나리오 도메인 시나리오 매핑 고객 요구사항 분석 고객 교육형 금융 콘텐츠는 보험영업 시기에 운영한 공개 블로그에서 확인되는 재무설계와 금융 기본 설명 흐름이다.\n\n대표 주제는 현재 재무상태 확인, 돈을 모으는 기준, 가로저축과 세로저축, 단리와 복리, 분산투자원칙, cma와 예금자보호, 정기예금/정기적금/cma 금리비교, 사회초년생 보험, 보험 상품 활용 방식이다.\n\n이 콘텐츠의 구조는 특정 상품을 바로 권하는 방식보다, 고객이 먼저 이해해야 하는 판단 기준을 설명하고 그 다음 상품이나 행동으로 넘어가는 방식에 가깝다. 이 관점은 현재 포트폴리오의 보험 상품 설명 ai 시나리오와도 연결된다. ai가 답변할 때도 상품명만 말하는 것이 아니라, 조건 확인, 금지 표현, 다음 질문, 비교 기준을 먼저 세워야 하기 때문이다.\n\n공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- rss: `https://rss.blog.naver.com/wealthagora.xml`"
+    },
+    {
+      "id": "sfp-recruiting-education-content",
+      "title": "SFP 설명과 교육 콘텐츠",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "education",
+        "content"
+      ],
+      "summary": "SFP 직무, 금융보험과정, 세미나 글을 통해 보험영업 직무를 설명하고 교육 참여를 설계했던 공개 콘텐츠 기록이다.",
+      "tags": [
+        "sfp",
+        "insurance",
+        "education",
+        "recruiting",
+        "onboarding"
+      ],
+      "relatedNodes": [
+        {
+          "id": "insurance-sales-blog-financial-camp",
+          "title": "보험영업 블로그 금융 캠프",
+          "type": "derived-from"
+        },
+        {
+          "id": "branch-onboarding-workflow",
+          "title": "지점 온보딩 Workflow",
+          "type": "supports"
+        },
+        {
+          "id": "education-visual-onboarding",
+          "title": "초보자 교육 시각화",
+          "type": "supports"
+        },
+        {
+          "id": "education-performance-dashboard",
+          "title": "교육 성과 분석 Dashboard",
+          "type": "related-to"
+        }
+      ],
+      "sources": [
+        {
+          "label": "금융 캠프 블로그",
+          "platform": "NAVER BLOG",
+          "url": "https://blog.naver.com/wealthagora",
+          "date": "2013-04 - 2014-05"
+        },
+        {
+          "label": "금융 캠프 RSS",
+          "platform": "RSS",
+          "url": "https://rss.blog.naver.com/wealthagora.xml",
+          "date": "2013-04 - 2014-05"
+        }
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/sfp-recruiting-education-content.md",
+      "lastUpdated": "2026-06-09",
+      "body": "SFP 설명과 교육 콘텐츠는 공개 블로그에서 확인되는 보험영업 직무 설명, 금융보험과정, 직무설명회, 세미나 기록을 포트폴리오용으로 요약한 노드다.\n\n대표 글 흐름은 SFP란 무엇인지, 커리어 패스, 금융보험과정 모집과 일정, 직무설명회, 세미나 참여 같은 주제로 구성되어 있다. 직무를 단순 채용 공고처럼 설명하기보다, 어떤 일을 하며 어떤 역량과 관점이 필요한지 설명하는 교육형 콘텐츠에 가깝다.\n\n이 경험은 이후 지점 온보딩, 교육 자료 시각화, 교육 현황 대시보드 같은 업무형 도구와 연결된다. 같은 보험 도메인 안에서도 사람을 설득하고 교육하는 흐름을 콘텐츠, 프로세스, 대시보드로 바꾸는 방향성이 이어진다.\n\n공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- RSS: `https://rss.blog.naver.com/wealthagora.xml`",
+      "searchText": "sfp 설명과 교육 콘텐츠 case insurance education content sfp 직무, 금융보험과정, 세미나 글을 통해 보험영업 직무를 설명하고 교육 참여를 설계했던 공개 콘텐츠 기록이다. sfp insurance education recruiting onboarding 보험영업 블로그 금융 캠프 지점 온보딩 workflow 초보자 교육 시각화 교육 성과 분석 dashboard sfp 설명과 교육 콘텐츠는 공개 블로그에서 확인되는 보험영업 직무 설명, 금융보험과정, 직무설명회, 세미나 기록을 포트폴리오용으로 요약한 노드다.\n\n대표 글 흐름은 sfp란 무엇인지, 커리어 패스, 금융보험과정 모집과 일정, 직무설명회, 세미나 참여 같은 주제로 구성되어 있다. 직무를 단순 채용 공고처럼 설명하기보다, 어떤 일을 하며 어떤 역량과 관점이 필요한지 설명하는 교육형 콘텐츠에 가깝다.\n\n이 경험은 이후 지점 온보딩, 교육 자료 시각화, 교육 현황 대시보드 같은 업무형 도구와 연결된다. 같은 보험 도메인 안에서도 사람을 설득하고 교육하는 흐름을 콘텐츠, 프로세스, 대시보드로 바꾸는 방향성이 이어진다.\n\n공개 출처:\n\n- 블로그 메인: `https://blog.naver.com/wealthagora`\n- rss: `https://rss.blog.naver.com/wealthagora.xml`"
+    },
+    {
+      "id": "costco-dashboard-portfolio-demo",
+      "title": "코스트코 포트폴리오 대시보드 목업",
+      "type": "case",
+      "domains": [
+        "ecommerce",
+        "dashboard",
+        "automation"
+      ],
+      "summary": "코스트코 소싱, 매입, 매출 포트폴리오를 한 화면에서 판단하기 위해 만든 운영 대시보드를 공개 가능한 화면 구조와 더미 개인 판매 데이터로 재구성한 목업이다.",
+      "tags": [
+        "costco",
+        "dashboard",
+        "portfolio",
+        "crawler",
+        "google-sheets",
+        "dummy-demo"
+      ],
+      "relatedNodes": [
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "instantiates"
+        },
+        {
+          "id": "global-commerce-regulation-margin",
+          "title": "해외판매 규정과 마진 동시 검토",
+          "type": "supports"
+        },
+        {
+          "id": "policy-freshness-check",
+          "title": "날짜성 정책 자료 검증",
+          "type": "requires"
+        },
+        {
+          "id": "work-history-trial-error-log",
+          "title": "시행착오 중심 작업 히스토리",
+          "type": "derived-from"
+        },
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "applies-to"
+        }
+      ],
+      "sources": [
+        {
+          "label": "더미 페이지",
+          "platform": "DEMO",
+          "url": "http://127.0.0.1:4173/demos/costco-dashboard/index.html",
+          "date": "2026-06-10"
+        }
+      ],
+      "period": {
+        "start": "2026-04",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/costco-dashboard-portfolio-demo.md",
+      "lastUpdated": "2026-06-10",
+      "body": "이 목업은 실제 사용 중인 코스트코 운영 대시보드를 공개 포트폴리오에서 설명하기 위해 만든 공개 버전이다. 화면 구조, 카테고리, 칼럼명, 차트와 CSS 흐름은 실사용 페이지의 형태를 따르되, 개인 판매 상품명, 매입가, 판매가, BEP, 매출액 같은 비공개 운영 수치는 더미 데이터로 바꾸었다.\n\n목표는 상품 후보를 찾는 화면과 매입 이후 운영을 보는 화면을 분리하지 않고, 소싱 -> 가격 비교 -> 매입 이력 -> Coupang Wing/Rocket Growth 판매 상태 -> 재고와 입고 예외까지 이어지는 판단 흐름을 한 번에 보여주는 것이다.\n\n구현 방식은 대시보드 shell이 온라인 소싱, 오프라인 소싱, 매입 포트폴리오, 매출 포트폴리오 화면을 나누어 보여주는 구조다. 온라인·오프라인 크롤링 결과는 Google Sheets의 후보 탭과 비교 탭으로 정리되고, 대시보드는 생성된 데이터 스냅샷과 포트폴리오 런타임 데이터를 읽어 화면에 표시한다. 행사기간, 온라인가, 오프라인가처럼 공개 가격 비교 흐름을 설명하는 값은 공개 가능한 예시로 유지했다.\n\n연결되는 시트는 공개하지 않는다. 구조만 요약하면 온라인 할인 후보, 식품·비식품 분류, 오프라인 가격표, 통합 비교, 코스트코 매입 이력, 판매 캐시와 일별 매출 데이터가 서로 연결된다. 공개 목업에서는 시트 이동 버튼을 누르면 실제 링크로 이동하지 않고 \"클릭시 해당 시트로 이동합니다.(공개버전 제한)\" 안내만 표시한다.\n\n업데이트 흐름은 월요일과 목요일 주기적 크롤링을 기준으로 한다. 크롤링이 온라인·오프라인 후보 데이터를 갱신하고, Google Sheets 동기화와 대시보드 데이터 생성 단계를 거쳐 공개되지 않는 실사용 대시보드에 반영된다. 포트폴리오 화면은 이후 매입 이력, 판매가, BEP, 일별 매출, 입고 상태를 함께 읽어 운영 판단에 사용된다. 공개 버전에서는 이 개인 운영 구간만 더미 처리했다.\n\n더미 페이지: http://127.0.0.1:4173/demos/costco-dashboard/index.html",
+      "searchText": "코스트코 포트폴리오 대시보드 목업 case ecommerce dashboard automation 코스트코 소싱, 매입, 매출 포트폴리오를 한 화면에서 판단하기 위해 만든 운영 대시보드를 공개 가능한 화면 구조와 더미 개인 판매 데이터로 재구성한 목업이다. costco dashboard portfolio crawler google-sheets dummy-demo 다음 행동 중심 운영 대시보드 해외판매 규정과 마진 동시 검토 날짜성 정책 자료 검증 시행착오 중심 작업 히스토리 공개/비공개 지식 분리 이 목업은 실제 사용 중인 코스트코 운영 대시보드를 공개 포트폴리오에서 설명하기 위해 만든 공개 버전이다. 화면 구조, 카테고리, 칼럼명, 차트와 css 흐름은 실사용 페이지의 형태를 따르되, 개인 판매 상품명, 매입가, 판매가, bep, 매출액 같은 비공개 운영 수치는 더미 데이터로 바꾸었다.\n\n목표는 상품 후보를 찾는 화면과 매입 이후 운영을 보는 화면을 분리하지 않고, 소싱 -> 가격 비교 -> 매입 이력 -> coupang wing/rocket growth 판매 상태 -> 재고와 입고 예외까지 이어지는 판단 흐름을 한 번에 보여주는 것이다.\n\n구현 방식은 대시보드 shell이 온라인 소싱, 오프라인 소싱, 매입 포트폴리오, 매출 포트폴리오 화면을 나누어 보여주는 구조다. 온라인·오프라인 크롤링 결과는 google sheets의 후보 탭과 비교 탭으로 정리되고, 대시보드는 생성된 데이터 스냅샷과 포트폴리오 런타임 데이터를 읽어 화면에 표시한다. 행사기간, 온라인가, 오프라인가처럼 공개 가격 비교 흐름을 설명하는 값은 공개 가능한 예시로 유지했다.\n\n연결되는 시트는 공개하지 않는다. 구조만 요약하면 온라인 할인 후보, 식품·비식품 분류, 오프라인 가격표, 통합 비교, 코스트코 매입 이력, 판매 캐시와 일별 매출 데이터가 서로 연결된다. 공개 목업에서는 시트 이동 버튼을 누르면 실제 링크로 이동하지 않고 \"클릭시 해당 시트로 이동합니다.(공개버전 제한)\" 안내만 표시한다.\n\n업데이트 흐름은 월요일과 목요일 주기적 크롤링을 기준으로 한다. 크롤링이 온라인·오프라인 후보 데이터를 갱신하고, google sheets 동기화와 대시보드 데이터 생성 단계를 거쳐 공개되지 않는 실사용 대시보드에 반영된다. 포트폴리오 화면은 이후 매입 이력, 판매가, bep, 일별 매출, 입고 상태를 함께 읽어 운영 판단에 사용된다. 공개 버전에서는 이 개인 운영 구간만 더미 처리했다.\n\n더미 페이지: http://127.0.0.1:4173/demos/costco-dashboard/index.html"
+    },
+    {
+      "id": "meritz-dashboard-portfolio-demo",
+      "title": "메리츠 지점장 관리 대시보드 목업",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "dashboard",
+        "workflow",
+        "portfolio"
+      ],
+      "summary": "후보자, 지점원, 계약/서류 후속 관리를 한 화면에서 판단하기 위해 만든 업무형 대시보드의 공개용 목업이다. 디자인 구조는 유지하고 개인 식별 값과 저장 동작은 공개 제한 처리했다.",
+      "tags": [
+        "meritz",
+        "dashboard",
+        "insurance",
+        "workflow",
+        "public-demo"
+      ],
+      "relatedNodes": [
+        {
+          "id": "operations-dashboard-next-action",
+          "title": "다음 행동 중심 운영 대시보드",
+          "type": "instantiates"
+        },
+        {
+          "id": "branch-onboarding-workflow",
+          "title": "지점 온보딩 Workflow",
+          "type": "related-to"
+        },
+        {
+          "id": "public-private-knowledge-boundary",
+          "title": "공개/비공개 지식 분리",
+          "type": "supports"
+        },
+        {
+          "id": "customer-requirements-analysis",
+          "title": "고객 요구사항 분석",
+          "type": "derived-from"
+        },
+        {
+          "id": "ai-workflow-career-positioning",
+          "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+          "type": "supports"
+        }
+      ],
+      "sources": [
+        {
+          "label": "더미 페이지",
+          "url": "./demos/meritz-dashboard/index.html",
+          "date": "2026-06-11",
+          "type": "demo"
+        }
+      ],
+      "period": {
+        "start": "2026-05",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/meritz-dashboard-portfolio-demo.md",
+      "lastUpdated": "2026-06-11",
+      "body": "메리츠 지점장 관리 대시보드 목업은 후보자 관리, 지점원 관리, 계약/서류 후속 확인, 문구 자동화를 한 화면에서 처리하기 위해 만든 업무형 운영 도구를 공개 가능한 형태로 재구성한 것이다.\n\n원본 업무 도구의 디자인과 화면 흐름은 유지했다. 다만 공개 버전에서는 후보자명, 지점원명, 고객 이름, 배양코드, 위촉코드, 연락처, 상담 내용, 수기 메모, 상품/내용을 모두 더미 값으로 바꾸었다. 진행, 합격, 위촉, 희망시험, 경과, 구분, 차월, 상태, 전략구분, 진행단계, 최신수정일처럼 업무 흐름을 설명하는 값은 화면 구조 이해를 위해 유지했다.\n\n구현 방식은 원본 VM이나 원본 업무 자료에 연결하지 않는 정적 목업이다. 공개 페이지의 API 요청은 브라우저 안의 더미 데이터 라우터가 응답하며, 자료 새로 읽기, 메모 저장, 지점원 정보 수정, 재터치 처리, 문서 열기 같은 동작은 실제 저장이나 파일 접근 없이 공개 제한 메시지만 보여준다.\n\n이 목업의 목적은 보험 업무 데이터를 공개하는 것이 아니라, 실제 운영자가 후보자 상태, 지점원 상태, 후속 확인 대상을 빠르게 판단하도록 대시보드를 설계한 방식과 공개/비공개 분리 기준을 보여주는 것이다.",
+      "searchText": "메리츠 지점장 관리 대시보드 목업 case insurance dashboard workflow portfolio 후보자, 지점원, 계약/서류 후속 관리를 한 화면에서 판단하기 위해 만든 업무형 대시보드의 공개용 목업이다. 디자인 구조는 유지하고 개인 식별 값과 저장 동작은 공개 제한 처리했다. meritz dashboard insurance workflow public-demo 다음 행동 중심 운영 대시보드 지점 온보딩 workflow 공개/비공개 지식 분리 고객 요구사항 분석 현업 문제를 ai agent 워크플로우로 전환하는 방식 메리츠 지점장 관리 대시보드 목업은 후보자 관리, 지점원 관리, 계약/서류 후속 확인, 문구 자동화를 한 화면에서 처리하기 위해 만든 업무형 운영 도구를 공개 가능한 형태로 재구성한 것이다.\n\n원본 업무 도구의 디자인과 화면 흐름은 유지했다. 다만 공개 버전에서는 후보자명, 지점원명, 고객 이름, 배양코드, 위촉코드, 연락처, 상담 내용, 수기 메모, 상품/내용을 모두 더미 값으로 바꾸었다. 진행, 합격, 위촉, 희망시험, 경과, 구분, 차월, 상태, 전략구분, 진행단계, 최신수정일처럼 업무 흐름을 설명하는 값은 화면 구조 이해를 위해 유지했다.\n\n구현 방식은 원본 vm이나 원본 업무 자료에 연결하지 않는 정적 목업이다. 공개 페이지의 api 요청은 브라우저 안의 더미 데이터 라우터가 응답하며, 자료 새로 읽기, 메모 저장, 지점원 정보 수정, 재터치 처리, 문서 열기 같은 동작은 실제 저장이나 파일 접근 없이 공개 제한 메시지만 보여준다.\n\n이 목업의 목적은 보험 업무 데이터를 공개하는 것이 아니라, 실제 운영자가 후보자 상태, 지점원 상태, 후속 확인 대상을 빠르게 판단하도록 대시보드를 설계한 방식과 공개/비공개 분리 기준을 보여주는 것이다."
+    }
+  ]
+}

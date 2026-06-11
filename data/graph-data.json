@@ -1,0 +1,1437 @@
+{
+  "generatedAt": "2026-06-11T06:51:03.635Z",
+  "policy": {
+    "publicOnly": true,
+    "source": "08_public/portfolio/allowlist.json",
+    "allowedRoot": "08_public"
+  },
+  "stats": {
+    "publicNodeCount": 32,
+    "publicEdgeCount": 122,
+    "excludedPrivateCount": 0
+  },
+  "nodes": [
+    {
+      "id": "second-brain-search",
+      "title": "Second Brain Search 구조",
+      "type": "tool",
+      "domains": [
+        "second-brain",
+        "llm"
+      ],
+      "summary": "공개 승인된 지식 노드만 검색 대상으로 삼고, 결과에서 관련 노드와 업무 맥락을 함께 탐색하게 만드는 포트폴리오 구조다.",
+      "tags": [
+        "search",
+        "knowledge-graph",
+        "portfolio",
+        "public-index"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/second-brain-search.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "public-private-knowledge-boundary",
+      "title": "공개/비공개 지식 분리",
+      "type": "workflow",
+      "domains": [
+        "second-brain",
+        "llm"
+      ],
+      "summary": "개인 허브의 원본 지식과 포트폴리오 공개 레이어를 분리해, 검색 인덱스와 그래프에 공개 승인 자료만 포함시키는 운영 원칙이다.",
+      "tags": [
+        "privacy",
+        "public-layer",
+        "second-brain",
+        "validation"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/public-private-knowledge-boundary.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "customer-requirements-analysis",
+      "title": "고객 요구사항 분석",
+      "type": "skill",
+      "domains": [
+        "ai-agent",
+        "llm"
+      ],
+      "summary": "고객사의 업무 표현을 입력, 판단 기준, 예외 조건, 출력 형식으로 분해해 AI 대화 구조로 전환하는 역량이다.",
+      "tags": [
+        "requirements",
+        "scenario-design",
+        "prompting",
+        "workflow"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/customer-requirements-analysis.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "tool-calling-requirements",
+      "title": "Tool Calling 요구사항 정의",
+      "type": "skill",
+      "domains": [
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "도구 호출이 필요한 업무를 입력값, 응답값, 예외 조건, 실패 시 대체 응답으로 분해하는 설계 역량이다.",
+      "tags": [
+        "tool-calling",
+        "requirements",
+        "exceptions",
+        "llm"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/tool-calling-requirements.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "prompt-library-ecommerce-detail-pages",
+      "title": "이커머스 상세페이지 Prompt Library",
+      "type": "prompt",
+      "domains": [
+        "ecommerce",
+        "llm"
+      ],
+      "summary": "상품 설명 자동화를 단발 프롬프트가 아니라 목적, 입력값, 금지 표현, 검수 기준이 있는 Prompt Library로 관리하는 방식이다.",
+      "tags": [
+        "prompt-library",
+        "ecommerce",
+        "product-description",
+        "workflow"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/prompt-library-ecommerce-detail-pages.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "insurance-product-ai-scenario",
+      "title": "보험 상품 설명 AI 시나리오",
+      "type": "scenario",
+      "domains": [
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "금융 도메인의 복잡한 설명 요구를 사용자의 이해 수준, 확인 조건, 금지 표현, 다음 질문 흐름으로 나누는 시나리오다.",
+      "tags": [
+        "insurance",
+        "scenario",
+        "conversation",
+        "domain"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/insurance-product-ai-scenario.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "branch-onboarding-workflow",
+      "title": "지점 온보딩 Workflow",
+      "type": "workflow",
+      "domains": [
+        "education",
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "새로운 사용자가 업무 기준, 학습 순서, 반복 확인 항목을 빠르게 이해하도록 돕는 온보딩 흐름을 공개 가능한 수준으로 추상화한 노드다.",
+      "tags": [
+        "onboarding",
+        "workflow",
+        "education",
+        "operations"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/branch-onboarding-workflow.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "education-performance-dashboard",
+      "title": "교육 성과 분석 Dashboard",
+      "type": "case",
+      "domains": [
+        "education",
+        "insurance",
+        "ai-agent"
+      ],
+      "summary": "교육 운영에서 확인해야 하는 상태와 다음 행동을 대시보드형 판단 흐름으로 정리하는 공개 가능한 사례 노드다.",
+      "tags": [
+        "dashboard",
+        "education",
+        "evaluation",
+        "operations"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-performance-dashboard.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "domain-scenario-mapping",
+      "title": "도메인 시나리오 매핑",
+      "type": "workflow",
+      "domains": [
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "보험, 이커머스, 교육 운영처럼 서로 다른 업무 경험을 공통 시나리오 단위로 연결하는 구조화 방식이다.",
+      "tags": [
+        "domain",
+        "scenario",
+        "knowledge-graph",
+        "second-brain"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/domain-scenario-mapping.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "ai-agent-quality-evaluation",
+      "title": "AI Agent 품질 평가 관점",
+      "type": "insight",
+      "domains": [
+        "ai-agent",
+        "llm"
+      ],
+      "summary": "AI Agent이 실제 업무 화면에서 유용하려면 답변 품질뿐 아니라 업무 맥락 이해, 예외 대응, 다음 행동 제안까지 함께 평가해야 한다.",
+      "tags": [
+        "ai-agent",
+        "evaluation",
+        "workflow",
+        "scenario"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/ai-agent-quality-evaluation.md",
+      "lastUpdated": "2026-06-08"
+    },
+    {
+      "id": "work-history-trial-error-log",
+      "title": "시행착오 중심 작업 히스토리",
+      "type": "workflow",
+      "domains": [
+        "second-brain",
+        "llm",
+        "operations"
+      ],
+      "summary": "작업 기록을 단순 날짜 로그가 아니라 목표, 시행착오, 개선, 결과, 재사용 가능한 원칙으로 남기는 Second Brain 기록 방식이다.",
+      "tags": [
+        "work-history",
+        "handoff",
+        "trial-error",
+        "knowledge-management"
+      ],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/work-history-trial-error-log.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "operations-dashboard-next-action",
+      "title": "다음 행동 중심 운영 대시보드",
+      "type": "case",
+      "domains": [
+        "operations",
+        "dashboard",
+        "ai-agent"
+      ],
+      "summary": "업무 대시보드를 보기 좋은 요약 화면이 아니라 상태, 다음 행동, 예외 처리를 먼저 보여주는 운영 판단 도구로 바꾸는 방식이다.",
+      "tags": [
+        "dashboard",
+        "next-action",
+        "operations",
+        "workflow"
+      ],
+      "period": {
+        "start": "2026-05",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/operations-dashboard-next-action.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-visual-onboarding",
+      "title": "초보자 교육 시각화",
+      "type": "case",
+      "domains": [
+        "education",
+        "ai-agent",
+        "workflow"
+      ],
+      "summary": "초보자 교육 자료를 긴 설명서가 아니라 짧은 상황, 대화 예시, 시각 자료, 다음 행동으로 바꾸는 설계 방식이다.",
+      "tags": [
+        "education",
+        "onboarding",
+        "visual-guide",
+        "scenario"
+      ],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-visual-onboarding.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "policy-freshness-check",
+      "title": "날짜성 정책 자료 검증",
+      "type": "workflow",
+      "domains": [
+        "research",
+        "operations",
+        "llm"
+      ],
+      "summary": "지원 제도, 플랫폼 정책, 요율처럼 시간이 지나면 바뀌는 자료를 저장된 답이 아니라 재검증 출발점으로 관리하는 방식이다.",
+      "tags": [
+        "freshness",
+        "policy",
+        "research",
+        "verification"
+      ],
+      "period": {
+        "start": "2026-04",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/policy-freshness-check.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "global-commerce-regulation-margin",
+      "title": "해외판매 규정과 마진 동시 검토",
+      "type": "case",
+      "domains": [
+        "ecommerce",
+        "research",
+        "operations"
+      ],
+      "summary": "해외판매 후보를 볼 때 국가별 제한, 배송 조건, 판매 가능성, 수익성을 한 흐름에서 같이 검토하는 방식이다.",
+      "tags": [
+        "global-commerce",
+        "regulation",
+        "margin",
+        "marketplace"
+      ],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-04"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/global-commerce-regulation-margin.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "brand-channel-validation",
+      "title": "브랜드 자산의 채널 검증",
+      "type": "case",
+      "domains": [
+        "brand",
+        "ecommerce",
+        "workflow"
+      ],
+      "summary": "브랜드 자료를 감성 콘셉트로만 남기지 않고 판매 채널, 상품 설명, 이미지, 규정, 배송 조건에 맞춰 검증하는 방식이다.",
+      "tags": [
+        "brand",
+        "channel",
+        "commerce",
+        "asset-workflow"
+      ],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-04"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/brand-channel-validation.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "cross-device-handoff-system",
+      "title": "집과 회사 작업 연속성",
+      "type": "workflow",
+      "domains": [
+        "operations",
+        "second-brain",
+        "handoff"
+      ],
+      "summary": "여러 PC와 여러 AI 도구 사이에서 작업을 이어가기 위해 원본, 상태, 캐시, 실행 지침, 핸드오프 문서를 분리하는 운영 방식이다.",
+      "tags": [
+        "handoff",
+        "multi-device",
+        "continuity",
+        "workspace-routing"
+      ],
+      "period": {
+        "start": "2026-03",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/cross-device-handoff-system.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "ai-workflow-career-positioning",
+      "title": "현업 문제를 AI Agent 워크플로우로 전환하는 방식",
+      "type": "skill",
+      "domains": [
+        "career",
+        "llm",
+        "ai-agent"
+      ],
+      "summary": "보험, 교육, 물류, 제조, 해외 운영, 이커머스 경험을 현업 요구사항 분석, 데이터 구조화, Agent 동작 흐름, 검증 기준으로 연결하는 공개용 커리어 축이다.",
+      "tags": [
+        "career",
+        "ai-workflow",
+        "llm",
+        "scenario",
+        "portfolio"
+      ],
+      "period": {
+        "start": "2026-06",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/ai-workflow-career-positioning.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "public-portfolio-link-hub",
+      "title": "공개 포트폴리오 링크 허브",
+      "type": "tool",
+      "domains": [
+        "career",
+        "portfolio"
+      ],
+      "summary": "공개 가능한 외부 작업 흔적을 한 곳에서 연결해 Second Brain GUI의 검색 결과와 경력 맥락을 보강하는 허브다.",
+      "tags": [
+        "portfolio",
+        "github",
+        "links",
+        "public"
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/public-portfolio-link-hub.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "kaggle-data-analysis-projects",
+      "title": "Kaggle 데이터 분석 프로젝트",
+      "type": "case",
+      "domains": [
+        "data",
+        "portfolio",
+        "education"
+      ],
+      "summary": "Kaggle 커널 번역과 주택 가격 예측 프로젝트를 통해 데이터 탐색, 분석, 시각화, 모델링의 의사결정 흐름을 학습한 공개 작업 기록이다.",
+      "tags": [
+        "kaggle",
+        "data-analysis",
+        "translation",
+        "r",
+        "portfolio"
+      ],
+      "period": {
+        "start": "2019-04",
+        "end": "2019-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/kaggle-data-analysis-projects.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "data-education-foundation",
+      "title": "데이터 분석 교육 기반",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "analysis"
+      ],
+      "summary": "Python, SQL, Tableau, 선형대수, CRM/Product Analysis 학습을 통해 현업 데이터를 지표와 의사결정 흐름으로 바꾸는 기반을 만든 교육 이력이다.",
+      "tags": [
+        "python",
+        "sql",
+        "tableau",
+        "crm",
+        "product-analysis",
+        "education"
+      ],
+      "period": {
+        "start": "2019-04",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/data-education-foundation.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-python-data-analysis",
+      "title": "Python 데이터 분석 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "python"
+      ],
+      "summary": "Python 기초 문법과 pandas, numpy, DataFrame, matplotlib, seaborn, Selenium 크롤링을 익힌 데이터 분석 교육 프로젝트다.",
+      "tags": [
+        "python",
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "seaborn",
+        "crawling"
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-11"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-python-data-analysis.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-sql-customer-analysis",
+      "title": "SQL 고객 데이터 분석 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "sql"
+      ],
+      "summary": "고객 데이터를 활용한 SQL 데이터 분석 강의를 통해 데이터 추출, 조건 필터링, 집계, 조인, 서브쿼리, 분석 함수를 학습한 프로젝트다.",
+      "tags": [
+        "sql",
+        "customer-data",
+        "database",
+        "join",
+        "subquery",
+        "analytics"
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-11"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-sql-customer-analysis.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-tableau-dashboard",
+      "title": "Tableau 대시보드 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "dashboard"
+      ],
+      "summary": "Tableau 데이터 시각화 강의를 통해 맞춤형 대시보드, 차트, 계산식, LOD, 매개변수, 동작 필터를 학습한 프로젝트다.",
+      "tags": [
+        "tableau",
+        "dashboard",
+        "visualization",
+        "lod",
+        "bi"
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-tableau-dashboard.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-linear-algebra-statistics",
+      "title": "수리통계와 선형대수 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "math"
+      ],
+      "summary": "선형대수와 기초 통계를 통해 회귀분석, ML/DL 모델링, 행렬, 벡터공간, 고윳값, 텐서 개념을 학습한 프로젝트다.",
+      "tags": [
+        "linear-algebra",
+        "statistics",
+        "machine-learning",
+        "matrix",
+        "tensor"
+      ],
+      "period": {
+        "start": "2022-11",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-linear-algebra-statistics.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-product-analysis",
+      "title": "Product Analysis 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "product"
+      ],
+      "summary": "Funnel, Cohort, LTV, A/B Test를 통해 프로덕트 데이터 분석과 비즈니스 의사결정 흐름을 학습한 프로젝트다.",
+      "tags": [
+        "product-analysis",
+        "funnel",
+        "cohort",
+        "ltv",
+        "ab-test"
+      ],
+      "period": {
+        "start": "2022-12",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-product-analysis.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "education-crm-analysis",
+      "title": "CRM Analysis 교육 프로젝트",
+      "type": "skill",
+      "domains": [
+        "data",
+        "education",
+        "crm"
+      ],
+      "summary": "AARRR, RFM, 고객 세분화, 군집분석, 연관성 분석, 타겟팅, 이탈 예측을 학습한 CRM 데이터 분석 프로젝트다.",
+      "tags": [
+        "crm",
+        "aarrr",
+        "rfm",
+        "segmentation",
+        "clustering",
+        "churn"
+      ],
+      "period": {
+        "start": "2022-12",
+        "end": "2022-12"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/education-crm-analysis.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "insurance-sales-blog-financial-camp",
+      "title": "보험영업 블로그 금융 캠프",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "content",
+        "sales"
+      ],
+      "summary": "보험영업 시기에 운영한 공개 블로그를 고객 교육형 금융 콘텐츠와 직무 설명 콘텐츠의 초기 사례로 정리한 노드다.",
+      "tags": [
+        "insurance",
+        "blog",
+        "financial-planning",
+        "sales-content",
+        "portfolio"
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/insurance-sales-blog-financial-camp.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "financial-planning-content-scenario",
+      "title": "고객 교육형 금융 콘텐츠",
+      "type": "scenario",
+      "domains": [
+        "insurance",
+        "content",
+        "finance"
+      ],
+      "summary": "재무설계, 금리비교, 보험 설명 글을 고객의 이해 흐름에 맞춰 구성했던 공개 블로그 기반 콘텐츠 시나리오다.",
+      "tags": [
+        "financial-planning",
+        "insurance",
+        "customer-education",
+        "content-strategy"
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/financial-planning-content-scenario.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "sfp-recruiting-education-content",
+      "title": "SFP 설명과 교육 콘텐츠",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "education",
+        "content"
+      ],
+      "summary": "SFP 직무, 금융보험과정, 세미나 글을 통해 보험영업 직무를 설명하고 교육 참여를 설계했던 공개 콘텐츠 기록이다.",
+      "tags": [
+        "sfp",
+        "insurance",
+        "education",
+        "recruiting",
+        "onboarding"
+      ],
+      "period": {
+        "start": "2013-04",
+        "end": "2014-05"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/sfp-recruiting-education-content.md",
+      "lastUpdated": "2026-06-09"
+    },
+    {
+      "id": "costco-dashboard-portfolio-demo",
+      "title": "코스트코 포트폴리오 대시보드 목업",
+      "type": "case",
+      "domains": [
+        "ecommerce",
+        "dashboard",
+        "automation"
+      ],
+      "summary": "코스트코 소싱, 매입, 매출 포트폴리오를 한 화면에서 판단하기 위해 만든 운영 대시보드를 공개 가능한 화면 구조와 더미 개인 판매 데이터로 재구성한 목업이다.",
+      "tags": [
+        "costco",
+        "dashboard",
+        "portfolio",
+        "crawler",
+        "google-sheets",
+        "dummy-demo"
+      ],
+      "period": {
+        "start": "2026-04",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/costco-dashboard-portfolio-demo.md",
+      "lastUpdated": "2026-06-10"
+    },
+    {
+      "id": "meritz-dashboard-portfolio-demo",
+      "title": "메리츠 지점장 관리 대시보드 목업",
+      "type": "case",
+      "domains": [
+        "insurance",
+        "dashboard",
+        "workflow",
+        "portfolio"
+      ],
+      "summary": "후보자, 지점원, 계약/서류 후속 관리를 한 화면에서 판단하기 위해 만든 업무형 대시보드의 공개용 목업이다. 디자인 구조는 유지하고 개인 식별 값과 저장 동작은 공개 제한 처리했다.",
+      "tags": [
+        "meritz",
+        "dashboard",
+        "insurance",
+        "workflow",
+        "public-demo"
+      ],
+      "period": {
+        "start": "2026-05",
+        "end": "2026-06"
+      },
+      "visibility": "public",
+      "publicOnly": true,
+      "sourcePath": "08_public/portfolio/nodes/meritz-dashboard-portfolio-demo.md",
+      "lastUpdated": "2026-06-11"
+    }
+  ],
+  "edges": [
+    {
+      "source": "second-brain-search",
+      "target": "public-private-knowledge-boundary",
+      "type": "requires"
+    },
+    {
+      "source": "second-brain-search",
+      "target": "domain-scenario-mapping",
+      "type": "supports"
+    },
+    {
+      "source": "second-brain-search",
+      "target": "customer-requirements-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "public-private-knowledge-boundary",
+      "target": "second-brain-search",
+      "type": "requires"
+    },
+    {
+      "source": "public-private-knowledge-boundary",
+      "target": "domain-scenario-mapping",
+      "type": "supports"
+    },
+    {
+      "source": "public-private-knowledge-boundary",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "customer-requirements-analysis",
+      "target": "tool-calling-requirements",
+      "type": "requires"
+    },
+    {
+      "source": "customer-requirements-analysis",
+      "target": "domain-scenario-mapping",
+      "type": "supports"
+    },
+    {
+      "source": "customer-requirements-analysis",
+      "target": "insurance-product-ai-scenario",
+      "type": "applies-to"
+    },
+    {
+      "source": "tool-calling-requirements",
+      "target": "customer-requirements-analysis",
+      "type": "extends"
+    },
+    {
+      "source": "tool-calling-requirements",
+      "target": "prompt-library-ecommerce-detail-pages",
+      "type": "supports"
+    },
+    {
+      "source": "tool-calling-requirements",
+      "target": "insurance-product-ai-scenario",
+      "type": "supports"
+    },
+    {
+      "source": "tool-calling-requirements",
+      "target": "ai-agent-quality-evaluation",
+      "type": "requires"
+    },
+    {
+      "source": "prompt-library-ecommerce-detail-pages",
+      "target": "customer-requirements-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "prompt-library-ecommerce-detail-pages",
+      "target": "tool-calling-requirements",
+      "type": "requires"
+    },
+    {
+      "source": "prompt-library-ecommerce-detail-pages",
+      "target": "domain-scenario-mapping",
+      "type": "instantiates"
+    },
+    {
+      "source": "insurance-product-ai-scenario",
+      "target": "customer-requirements-analysis",
+      "type": "derived-from"
+    },
+    {
+      "source": "insurance-product-ai-scenario",
+      "target": "tool-calling-requirements",
+      "type": "requires"
+    },
+    {
+      "source": "insurance-product-ai-scenario",
+      "target": "domain-scenario-mapping",
+      "type": "instantiates"
+    },
+    {
+      "source": "branch-onboarding-workflow",
+      "target": "customer-requirements-analysis",
+      "type": "applies-to"
+    },
+    {
+      "source": "branch-onboarding-workflow",
+      "target": "education-performance-dashboard",
+      "type": "supports"
+    },
+    {
+      "source": "branch-onboarding-workflow",
+      "target": "domain-scenario-mapping",
+      "type": "instantiates"
+    },
+    {
+      "source": "education-performance-dashboard",
+      "target": "ai-agent-quality-evaluation",
+      "type": "improves"
+    },
+    {
+      "source": "education-performance-dashboard",
+      "target": "branch-onboarding-workflow",
+      "type": "supports"
+    },
+    {
+      "source": "education-performance-dashboard",
+      "target": "customer-requirements-analysis",
+      "type": "derived-from"
+    },
+    {
+      "source": "domain-scenario-mapping",
+      "target": "second-brain-search",
+      "type": "supports"
+    },
+    {
+      "source": "domain-scenario-mapping",
+      "target": "prompt-library-ecommerce-detail-pages",
+      "type": "instantiates"
+    },
+    {
+      "source": "domain-scenario-mapping",
+      "target": "insurance-product-ai-scenario",
+      "type": "instantiates"
+    },
+    {
+      "source": "domain-scenario-mapping",
+      "target": "branch-onboarding-workflow",
+      "type": "instantiates"
+    },
+    {
+      "source": "ai-agent-quality-evaluation",
+      "target": "education-performance-dashboard",
+      "type": "improves"
+    },
+    {
+      "source": "ai-agent-quality-evaluation",
+      "target": "tool-calling-requirements",
+      "type": "requires"
+    },
+    {
+      "source": "ai-agent-quality-evaluation",
+      "target": "domain-scenario-mapping",
+      "type": "extends"
+    },
+    {
+      "source": "work-history-trial-error-log",
+      "target": "second-brain-search",
+      "type": "supports"
+    },
+    {
+      "source": "work-history-trial-error-log",
+      "target": "public-private-knowledge-boundary",
+      "type": "requires"
+    },
+    {
+      "source": "work-history-trial-error-log",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "operations-dashboard-next-action",
+      "target": "education-performance-dashboard",
+      "type": "improves"
+    },
+    {
+      "source": "operations-dashboard-next-action",
+      "target": "customer-requirements-analysis",
+      "type": "derived-from"
+    },
+    {
+      "source": "operations-dashboard-next-action",
+      "target": "work-history-trial-error-log",
+      "type": "derived-from"
+    },
+    {
+      "source": "education-visual-onboarding",
+      "target": "branch-onboarding-workflow",
+      "type": "supports"
+    },
+    {
+      "source": "education-visual-onboarding",
+      "target": "insurance-product-ai-scenario",
+      "type": "instantiates"
+    },
+    {
+      "source": "education-visual-onboarding",
+      "target": "domain-scenario-mapping",
+      "type": "requires"
+    },
+    {
+      "source": "policy-freshness-check",
+      "target": "tool-calling-requirements",
+      "type": "requires"
+    },
+    {
+      "source": "policy-freshness-check",
+      "target": "public-private-knowledge-boundary",
+      "type": "supports"
+    },
+    {
+      "source": "policy-freshness-check",
+      "target": "work-history-trial-error-log",
+      "type": "supports"
+    },
+    {
+      "source": "global-commerce-regulation-margin",
+      "target": "policy-freshness-check",
+      "type": "requires"
+    },
+    {
+      "source": "global-commerce-regulation-margin",
+      "target": "prompt-library-ecommerce-detail-pages",
+      "type": "supports"
+    },
+    {
+      "source": "global-commerce-regulation-margin",
+      "target": "domain-scenario-mapping",
+      "type": "instantiates"
+    },
+    {
+      "source": "brand-channel-validation",
+      "target": "global-commerce-regulation-margin",
+      "type": "requires"
+    },
+    {
+      "source": "brand-channel-validation",
+      "target": "prompt-library-ecommerce-detail-pages",
+      "type": "supports"
+    },
+    {
+      "source": "brand-channel-validation",
+      "target": "work-history-trial-error-log",
+      "type": "derived-from"
+    },
+    {
+      "source": "cross-device-handoff-system",
+      "target": "second-brain-search",
+      "type": "supports"
+    },
+    {
+      "source": "cross-device-handoff-system",
+      "target": "work-history-trial-error-log",
+      "type": "supports"
+    },
+    {
+      "source": "cross-device-handoff-system",
+      "target": "public-private-knowledge-boundary",
+      "type": "requires"
+    },
+    {
+      "source": "ai-workflow-career-positioning",
+      "target": "domain-scenario-mapping",
+      "type": "extends"
+    },
+    {
+      "source": "ai-workflow-career-positioning",
+      "target": "customer-requirements-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "ai-workflow-career-positioning",
+      "target": "tool-calling-requirements",
+      "type": "supports"
+    },
+    {
+      "source": "ai-workflow-career-positioning",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "ai-workflow-career-positioning",
+      "target": "public-portfolio-link-hub",
+      "type": "related-to"
+    },
+    {
+      "source": "public-portfolio-link-hub",
+      "target": "second-brain-search",
+      "type": "supports"
+    },
+    {
+      "source": "public-portfolio-link-hub",
+      "target": "ai-workflow-career-positioning",
+      "type": "related-to"
+    },
+    {
+      "source": "public-portfolio-link-hub",
+      "target": "kaggle-data-analysis-projects",
+      "type": "supports"
+    },
+    {
+      "source": "public-portfolio-link-hub",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "kaggle-data-analysis-projects",
+      "target": "data-education-foundation",
+      "type": "instantiates"
+    },
+    {
+      "source": "kaggle-data-analysis-projects",
+      "target": "public-portfolio-link-hub",
+      "type": "related-to"
+    },
+    {
+      "source": "kaggle-data-analysis-projects",
+      "target": "ai-workflow-career-positioning",
+      "type": "supports"
+    },
+    {
+      "source": "kaggle-data-analysis-projects",
+      "target": "education-performance-dashboard",
+      "type": "supports"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "kaggle-data-analysis-projects",
+      "type": "supports"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-python-data-analysis",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-sql-customer-analysis",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-tableau-dashboard",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-linear-algebra-statistics",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-product-analysis",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-crm-analysis",
+      "type": "instantiates"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "education-performance-dashboard",
+      "type": "supports"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "data-education-foundation",
+      "target": "operations-dashboard-next-action",
+      "type": "supports"
+    },
+    {
+      "source": "education-python-data-analysis",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-python-data-analysis",
+      "target": "kaggle-data-analysis-projects",
+      "type": "supports"
+    },
+    {
+      "source": "education-python-data-analysis",
+      "target": "education-sql-customer-analysis",
+      "type": "related-to"
+    },
+    {
+      "source": "education-python-data-analysis",
+      "target": "ai-workflow-career-positioning",
+      "type": "supports"
+    },
+    {
+      "source": "education-sql-customer-analysis",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-sql-customer-analysis",
+      "target": "education-python-data-analysis",
+      "type": "related-to"
+    },
+    {
+      "source": "education-sql-customer-analysis",
+      "target": "education-crm-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "education-sql-customer-analysis",
+      "target": "operations-dashboard-next-action",
+      "type": "supports"
+    },
+    {
+      "source": "education-tableau-dashboard",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-tableau-dashboard",
+      "target": "education-performance-dashboard",
+      "type": "supports"
+    },
+    {
+      "source": "education-tableau-dashboard",
+      "target": "operations-dashboard-next-action",
+      "type": "supports"
+    },
+    {
+      "source": "education-tableau-dashboard",
+      "target": "education-sql-customer-analysis",
+      "type": "related-to"
+    },
+    {
+      "source": "education-linear-algebra-statistics",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-linear-algebra-statistics",
+      "target": "kaggle-data-analysis-projects",
+      "type": "supports"
+    },
+    {
+      "source": "education-linear-algebra-statistics",
+      "target": "education-product-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "education-linear-algebra-statistics",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "education-product-analysis",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-product-analysis",
+      "target": "education-crm-analysis",
+      "type": "related-to"
+    },
+    {
+      "source": "education-product-analysis",
+      "target": "operations-dashboard-next-action",
+      "type": "supports"
+    },
+    {
+      "source": "education-product-analysis",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "education-crm-analysis",
+      "target": "data-education-foundation",
+      "type": "supports"
+    },
+    {
+      "source": "education-crm-analysis",
+      "target": "education-product-analysis",
+      "type": "related-to"
+    },
+    {
+      "source": "education-crm-analysis",
+      "target": "education-sql-customer-analysis",
+      "type": "requires"
+    },
+    {
+      "source": "education-crm-analysis",
+      "target": "ai-agent-quality-evaluation",
+      "type": "supports"
+    },
+    {
+      "source": "insurance-sales-blog-financial-camp",
+      "target": "financial-planning-content-scenario",
+      "type": "supports"
+    },
+    {
+      "source": "insurance-sales-blog-financial-camp",
+      "target": "sfp-recruiting-education-content",
+      "type": "supports"
+    },
+    {
+      "source": "insurance-sales-blog-financial-camp",
+      "target": "insurance-product-ai-scenario",
+      "type": "derived-from"
+    },
+    {
+      "source": "insurance-sales-blog-financial-camp",
+      "target": "customer-requirements-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "financial-planning-content-scenario",
+      "target": "insurance-sales-blog-financial-camp",
+      "type": "derived-from"
+    },
+    {
+      "source": "financial-planning-content-scenario",
+      "target": "insurance-product-ai-scenario",
+      "type": "supports"
+    },
+    {
+      "source": "financial-planning-content-scenario",
+      "target": "domain-scenario-mapping",
+      "type": "instantiates"
+    },
+    {
+      "source": "financial-planning-content-scenario",
+      "target": "customer-requirements-analysis",
+      "type": "supports"
+    },
+    {
+      "source": "sfp-recruiting-education-content",
+      "target": "insurance-sales-blog-financial-camp",
+      "type": "derived-from"
+    },
+    {
+      "source": "sfp-recruiting-education-content",
+      "target": "branch-onboarding-workflow",
+      "type": "supports"
+    },
+    {
+      "source": "sfp-recruiting-education-content",
+      "target": "education-visual-onboarding",
+      "type": "supports"
+    },
+    {
+      "source": "sfp-recruiting-education-content",
+      "target": "education-performance-dashboard",
+      "type": "related-to"
+    },
+    {
+      "source": "costco-dashboard-portfolio-demo",
+      "target": "operations-dashboard-next-action",
+      "type": "instantiates"
+    },
+    {
+      "source": "costco-dashboard-portfolio-demo",
+      "target": "global-commerce-regulation-margin",
+      "type": "supports"
+    },
+    {
+      "source": "costco-dashboard-portfolio-demo",
+      "target": "policy-freshness-check",
+      "type": "requires"
+    },
+    {
+      "source": "costco-dashboard-portfolio-demo",
+      "target": "work-history-trial-error-log",
+      "type": "derived-from"
+    },
+    {
+      "source": "costco-dashboard-portfolio-demo",
+      "target": "public-private-knowledge-boundary",
+      "type": "applies-to"
+    },
+    {
+      "source": "meritz-dashboard-portfolio-demo",
+      "target": "operations-dashboard-next-action",
+      "type": "instantiates"
+    },
+    {
+      "source": "meritz-dashboard-portfolio-demo",
+      "target": "branch-onboarding-workflow",
+      "type": "related-to"
+    },
+    {
+      "source": "meritz-dashboard-portfolio-demo",
+      "target": "public-private-knowledge-boundary",
+      "type": "supports"
+    },
+    {
+      "source": "meritz-dashboard-portfolio-demo",
+      "target": "customer-requirements-analysis",
+      "type": "derived-from"
+    },
+    {
+      "source": "meritz-dashboard-portfolio-demo",
+      "target": "ai-workflow-career-positioning",
+      "type": "supports"
+    }
+  ]
+}

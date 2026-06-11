@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Second Brain Knowledge Graph</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="graph-app" aria-label="Second Brain knowledge graph">
+      <aside class="left-sidebar" aria-label="graph filters">
+        <div class="sidebar-top">
+          <button type="button" class="circle-button" aria-label="back">←</button>
+          <div class="language-toggle" aria-label="language">
+            <span class="active">KO</span>
+            <span>EN</span>
+          </div>
+        </div>
+
+        <header class="sidebar-title">
+          <p>지식 그래프</p>
+          <h1>Second Brain</h1>
+          <div class="graph-counts">
+            <span id="visible-node-count">0 노드</span>
+            <span class="dot-separator">·</span>
+            <span id="visible-edge-count">0 엣지</span>
+          </div>
+        </header>
+
+        <section class="sidebar-section">
+          <h2>노드 유형</h2>
+          <div id="type-filters" class="legend-list"></div>
+        </section>
+
+        <section class="sidebar-section">
+          <h2>엣지 유형</h2>
+          <div id="edge-filters" class="legend-list edge-list"></div>
+        </section>
+
+        <section class="sidebar-section compact-controls">
+          <h2 id="layout-mode-label">자유</h2>
+          <div class="text-tabs" id="layout-controls">
+            <button type="button" data-layout="free" aria-pressed="true">자유</button>
+            <button type="button" data-layout="type" aria-pressed="false">유형별</button>
+            <button type="button" data-layout="hierarchy" aria-pressed="false">계층</button>
+            <button type="button" data-layout="timeline" aria-pressed="false">시간순</button>
+          </div>
+        </section>
+
+        <section class="sidebar-section compact-controls">
+          <h2>노드 간격</h2>
+          <div class="text-tabs" id="spacing-controls">
+            <button type="button" data-spacing="0.78" aria-pressed="false">좁게</button>
+            <button type="button" data-spacing="1" aria-pressed="true">보통</button>
+            <button type="button" data-spacing="1.28" aria-pressed="false">넓게</button>
+          </div>
+        </section>
+
+        <div class="sidebar-actions">
+          <button type="button" id="reflow-button">↻ 다시 정렬</button>
+          <button type="button" id="labels-button" aria-pressed="true">◌ 라벨 숨기기</button>
+          <button type="button" id="reset-button">필터 초기화</button>
+        </div>
+
+        <p class="sidebar-help">
+          노드를 드래그하시고 스크롤로 확대하실 수 있습니다.<br />
+          클릭하시면 본문이 열립니다.
+        </p>
+      </aside>
+
+      <section class="graph-area" aria-label="public knowledge graph">
+        <label class="search-pill">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="search-input"
+            type="search"
+            autocomplete="off"
+            placeholder="Second Brain에서 검색하기"
+          />
+          <button type="button" id="ai-answer-button" class="ai-answer-button">Agent Daon</button>
+        </label>
+
+        <section id="search-results" class="search-results is-empty" aria-label="search results"></section>
+
+        <section class="portfolio-brief" aria-label="portfolio summary">
+          <div class="brief-copy">
+            <p class="brief-kicker">PUBLIC PORTFOLIO GRAPH</p>
+            <h2>현업 문제를 AI Agent 워크플로우와 운영 도구로 전환합니다.</h2>
+            <p>
+              보험, 이커머스, 교육 운영, 데이터 분석 경험을 요구사항 분해, 자동화,
+              대시보드, 검증 가능한 작업 이력으로 연결합니다.
+            </p>
+          </div>
+          <div class="brief-actions" aria-label="featured portfolio nodes">
+            <button type="button" data-feature-node="second-brain-search">Second Brain</button>
+            <button type="button" data-feature-node="costco-dashboard-portfolio-demo">코스트코 대시보드</button>
+            <button type="button" data-feature-node="meritz-dashboard-portfolio-demo">메리츠 관리판</button>
+            <button type="button" data-feature-node="ai-workflow-career-positioning">AI Agent 전환</button>
+          </div>
+        </section>
+
+        <svg id="graph-svg" class="graph-svg" role="img" aria-label="public knowledge graph">
+          <g id="graph-viewport">
+            <g id="edge-layer"></g>
+            <g id="node-layer"></g>
+          </g>
+        </svg>
+
+        <section class="period-panel" aria-label="period selector">
+          <div class="period-header">
+            <div>
+              <span class="period-kicker">기간 선택</span>
+              <span id="period-label" class="period-label">전체 기간</span>
+            </div>
+            <button type="button" id="period-reset-button">전체 기간</button>
+          </div>
+          <div class="period-slider" id="period-slider">
+            <input id="period-start" type="range" aria-label="기간 시작" />
+            <input id="period-end" type="range" aria-label="기간 끝" />
+          </div>
+          <p>양쪽 핸들로 공개 노드의 작업 기간을 좁힐 수 있습니다.</p>
+        </section>
+      </section>
+
+      <aside id="detail-drawer" class="detail-drawer is-empty" aria-label="selected node detail">
+        <button type="button" id="detail-close" class="detail-close" aria-label="선택한 노드 닫기">×</button>
+        <div id="detail-view" class="detail-view"></div>
+      </aside>
+    </main>
+
+    <script src="./data/public-data.js"></script>
+    <script src="./config.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

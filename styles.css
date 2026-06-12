@@ -775,6 +775,12 @@ button {
   cursor: pointer;
 }
 
+.node-hit-area {
+  fill: transparent;
+  stroke: transparent;
+  pointer-events: all;
+}
+
 .node.is-important .node-dot {
   stroke: rgba(255, 255, 255, 0.3);
   stroke-width: 1.8;
@@ -1369,6 +1375,10 @@ input:focus-visible,
     position: fixed;
     top: 12px;
     left: 14px;
+  }
+
+  body.mobile-search-active .mobile-filter-button {
+    display: none;
   }
 
   .search-results {

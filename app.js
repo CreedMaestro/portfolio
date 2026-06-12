@@ -306,6 +306,27 @@
     };
   }
 
+  function nearestVisibleNodeFromScreen(clientX, clientY, maxDistance = 34) {
+    if (!isMobileView()) return null;
+    const rect = svg.getBoundingClientRect();
+    const { visibleNodes } = getVisibleData();
+    let closest = null;
+    let closestDistance = maxDistance;
+    visibleNodes.forEach((node) => {
+      const position = state.nodePositions.get(node.id);
+      if (!position) return;
+      const display = displayPosition(node.id, position);
+      const screenX = rect.left + state.offsetX + display.x * state.scale;
+      const screenY = rect.top + state.offsetY + display.y * state.scale;
+      const distanceToNode = Math.hypot(clientX - screenX, clientY - screenY);
+      if (distanceToNode <= closestDistance) {
+        closest = node;
+        closestDistance = distanceToNode;
+      }
+    });
+    return closest;
+  }
+
   function seedPosition(index) {
     const size = getSvgSize();
     const angle = (index / Math.max(1, graphNodes.length)) * Math.PI * 2 - Math.PI / 2;
@@ -609,6 +630,11 @@
       group.setAttribute("aria-label", node.title);
       group.dataset.nodeId = node.id;
 
+      const hitArea = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      hitArea.setAttribute("class", "node-hit-area");
+      hitArea.setAttribute("r", isMobileView() ? 16 : 10);
+      group.appendChild(hitArea);
+
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       circle.setAttribute("class", "node-dot");
       circle.setAttribute("r", selected ? 7 : important ? 6 : 4);
@@ -629,7 +655,7 @@
           selectNode(node.id);
         }
       });
-      circle.addEventListener("pointerdown", startNodeDrag);
+      group.addEventListener("pointerdown", startNodeDrag);
       nodeLayer.appendChild(group);
     }
   }
@@ -976,6 +1002,7 @@
     clearElement(searchResults);
     const matches = getSearchMatches();
     const queryActive = searchTerms().length > 0;
+    document.body.classList.toggle("mobile-search-active", queryActive || aiState.status !== "idle");
 
     searchResults.classList.toggle("is-empty", !queryActive);
     if (!queryActive) return;
@@ -1231,37 +1258,105 @@
 
   function initPanAndZoom() {
     let pan = null;
+    let lastPanMoved = false;
+    const activePointers = new Map();
+    let pinch = null;
+
+    function distance(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y) || 1;
+    }
+
+    function midpoint(a, b) {
+      return {
+        x: (a.x + b.x) / 2,
+        y: (a.y + b.y) / 2
+      };
+    }
+
+    function startPinchIfNeeded(event) {
+      if (activePointers.size !== 2) return false;
+      const points = Array.from(activePointers.values());
+      const mid = midpoint(points[0], points[1]);
+      pinch = {
+        distance: distance(points[0], points[1]),
+        scale: state.scale,
+        world: worldFromScreen(mid.x, mid.y)
+      };
+      pan = null;
+      svg.classList.remove("is-panning");
+      event.preventDefault();
+      return true;
+    }
+
+    function updatePinch(event) {
+      if (!pinch || activePointers.size !== 2) return false;
+      const points = Array.from(activePointers.values());
+      const mid = midpoint(points[0], points[1]);
+      const rect = svg.getBoundingClientRect();
+      state.scale = Math.max(0.42, Math.min(2.8, pinch.scale * (distance(points[0], points[1]) / pinch.distance)));
+      state.offsetX = mid.x - rect.left - pinch.world.x * state.scale;
+      state.offsetY = mid.y - rect.top - pinch.world.y * state.scale;
+      setViewportTransform();
+      event.preventDefault();
+      return true;
+    }
+
     svg.addEventListener("pointerdown", (event) => {
+      if (isMobileView() && event.pointerType === "touch") {
+        activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        if (startPinchIfNeeded(event)) return;
+      }
       if (event.target.closest(".node")) return;
       stopIntroMotion();
       pan = {
+        pointerId: event.pointerId,
         x: event.clientX,
         y: event.clientY,
         offsetX: state.offsetX,
-        offsetY: state.offsetY
+        offsetY: state.offsetY,
+        moved: false
       };
       svg.classList.add("is-panning");
       svg.setPointerCapture(event.pointerId);
     });
 
     svg.addEventListener("pointermove", (event) => {
+      if (activePointers.has(event.pointerId)) {
+        activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        if (updatePinch(event)) return;
+      }
       if (!pan) return;
+      if (pan.pointerId !== event.pointerId) return;
+      if (Math.hypot(event.clientX - pan.x, event.clientY - pan.y) > 5) {
+        pan.moved = true;
+      }
       state.offsetX = pan.offsetX + event.clientX - pan.x;
       state.offsetY = pan.offsetY + event.clientY - pan.y;
       setViewportTransform();
     });
 
     function stopPan(event) {
-      if (!pan) return;
+      activePointers.delete(event.pointerId);
+      pinch = null;
+      if (!pan || pan.pointerId !== event.pointerId) return;
+      lastPanMoved = pan.moved;
       pan = null;
       svg.classList.remove("is-panning");
-      svg.releasePointerCapture(event.pointerId);
+      if (svg.hasPointerCapture(event.pointerId)) {
+        svg.releasePointerCapture(event.pointerId);
+      }
     }
 
     svg.addEventListener("pointerup", stopPan);
     svg.addEventListener("pointercancel", stopPan);
     svg.addEventListener("click", (event) => {
+      if (lastPanMoved) {
+        lastPanMoved = false;
+        return;
+      }
       if (event.target === svg) {
+        const nearestNode = nearestVisibleNodeFromScreen(event.clientX, event.clientY);
+        if (nearestNode) selectNode(nearestNode.id);
         return;
       }
     });

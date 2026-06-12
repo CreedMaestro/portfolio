@@ -55,11 +55,14 @@ button {
   min-width: 320px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 58% 45%, rgba(255, 255, 255, 0.025), transparent 34%),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    radial-gradient(circle at 18% 22%, rgba(82, 48, 126, 0.24), transparent 32%),
+    radial-gradient(circle at 78% 58%, rgba(54, 31, 86, 0.18), transparent 38%),
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.48) 0 0.7px, transparent 1.2px),
+    radial-gradient(circle at 64% 32%, rgba(222, 218, 255, 0.35) 0 0.6px, transparent 1.1px),
+    radial-gradient(circle at 38% 72%, rgba(255, 255, 255, 0.3) 0 0.6px, transparent 1.1px),
+    linear-gradient(135deg, #07070a 0%, #0d0713 48%, #050506 100%),
     var(--bg);
-  background-size: auto, 72px 72px, 72px 72px, auto;
+  background-size: auto, auto, 180px 180px, 260px 260px, 320px 320px, auto, auto;
 }
 
 .left-sidebar {
@@ -442,10 +445,8 @@ button {
   left: 36px;
   z-index: 5;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: center;
-  width: min(720px, calc(100% - 72px));
+  gap: 14px;
+  width: min(560px, calc(100% - 72px));
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   background: rgba(12, 13, 15, 0.82);
@@ -487,9 +488,10 @@ button {
 }
 
 .brief-actions {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  min-width: 180px;
+  min-width: 0;
 }
 
 .brief-actions button {
@@ -500,7 +502,7 @@ button {
   color: #dfe4ea;
   cursor: pointer;
   padding: 0 12px;
-  text-align: left;
+  text-align: center;
   font-size: 0.75rem;
   font-weight: 850;
   white-space: nowrap;
@@ -1103,13 +1105,10 @@ input:focus-visible,
   .portfolio-brief {
     top: 92px;
     left: 18px;
-    grid-template-columns: 1fr;
     width: min(560px, calc(100% - 36px));
   }
 
   .brief-actions {
-    display: flex;
-    min-width: 0;
     overflow-x: auto;
     padding-bottom: 2px;
   }

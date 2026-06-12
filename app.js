@@ -11,10 +11,12 @@
   const viewport = document.getElementById("graph-viewport");
   const edgeLayer = document.getElementById("edge-layer");
   const nodeLayer = document.getElementById("node-layer");
+  const leftSidebar = document.querySelector(".left-sidebar");
   const searchInput = document.getElementById("search-input");
   const searchResults = document.getElementById("search-results");
   const featureButtons = document.querySelectorAll("[data-feature-node]");
   const aiAnswerButton = document.getElementById("ai-answer-button");
+  const mobileFilterButton = document.getElementById("mobile-filter-button");
   const typeFilters = document.getElementById("type-filters");
   const edgeFilters = document.getElementById("edge-filters");
   const layoutModeLabel = document.getElementById("layout-mode-label");
@@ -116,6 +118,11 @@
     };
   }
 
+  function isMobileView() {
+    const viewportWidth = Math.min(window.innerWidth || 9999, document.documentElement.clientWidth || 9999);
+    return viewportWidth <= 720;
+  }
+
   function setViewportTransform() {
     viewport.setAttribute("transform", `translate(${state.offsetX} ${state.offsetY}) scale(${state.scale})`);
   }
@@ -187,8 +194,108 @@
     const size = getSvgSize();
     state.scale = Math.max(0.72, Math.min(1.05, size.width / 1200));
     state.offsetX = 0;
-    state.offsetY = 0;
+    state.offsetY = isMobileView() ? 260 : 0;
     setViewportTransform();
+  }
+
+  function updateMobileFilterButton() {
+    if (!mobileFilterButton || !leftSidebar) return;
+    const isFilterOpen = leftSidebar.classList.contains("is-mobile-filter-open");
+    const isHomeAction = isFilterOpen || Boolean(state.selectedId);
+    mobileFilterButton.setAttribute("aria-expanded", String(isFilterOpen));
+    mobileFilterButton.classList.toggle("is-home-action", isHomeAction);
+    mobileFilterButton.textContent = isHomeAction ? "홈 화면" : "필터";
+  }
+
+  function setMobileFilterOpen(open, options = {}) {
+    if (!mobileFilterButton || !leftSidebar) return;
+    leftSidebar.classList.toggle("is-mobile-filter-open", open);
+    document.body.classList.toggle("mobile-filter-open", open);
+    document.documentElement.classList.toggle("mobile-filter-open-root", open);
+    updateMobileFilterButton();
+    mobileFilterButton.setAttribute("aria-expanded", String(open));
+    mobileFilterButton.textContent = open ? "필터 닫기" : "필터";
+    updateMobileFilterButton();
+    if (open) {
+      requestAnimationFrame(() => fitMobileContextCamera(getVisibleData().visibleNodes));
+      window.setTimeout(() => fitMobileContextCamera(getVisibleData().visibleNodes), 300);
+    } else if (options.resetCamera !== false) {
+      window.scrollTo(0, 0);
+      resetCamera();
+    }
+  }
+
+  function returnToHomeView() {
+    state.selectedId = null;
+    setMobileFilterOpen(false);
+    window.scrollTo(0, 0);
+    resetCamera();
+    render();
+  }
+
+  function applyMobileCameraOffset() {
+    if (!isMobileView()) return;
+    state.offsetX = 0;
+    state.offsetY = 260;
+    setViewportTransform();
+  }
+
+  function fitNodesToArea(visibleNodes, options = {}) {
+    if (!isMobileView() || visibleNodes.length === 0) return;
+    const positions = visibleNodes.map((node) => state.nodePositions.get(node.id)).filter(Boolean);
+    if (positions.length === 0) return;
+
+    const minX = Math.min(...positions.map((position) => position.x));
+    const maxX = Math.max(...positions.map((position) => position.x));
+    const minY = Math.min(...positions.map((position) => position.y));
+    const maxY = Math.max(...positions.map((position) => position.y));
+    const size = getSvgSize();
+    const targetWidth = options.width || size.width;
+    const targetHeight = options.height || size.height;
+    const paddingX = options.paddingX ?? 72;
+    const paddingY = options.paddingY ?? 72;
+    const boxWidth = Math.max(1, maxX - minX);
+    const boxHeight = Math.max(1, maxY - minY);
+    const scale = Math.max(
+      options.minScale ?? 0.78,
+      Math.min(options.maxScale ?? 1.18, targetWidth / (boxWidth + paddingX), targetHeight / (boxHeight + paddingY))
+    );
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    state.scale = scale;
+    state.offsetX = targetWidth / 2 - centerX * scale + (options.shiftX || 0);
+    state.offsetY = (options.centerY ?? targetHeight / 2) - centerY * scale;
+    setViewportTransform();
+  }
+
+  function fitMobileContextCamera(visibleNodes) {
+    if (!isMobileView()) return;
+    if (state.selectedId) {
+      const drawerTop = detailDrawer.classList.contains("is-empty")
+        ? window.innerHeight * 0.44
+        : detailDrawer.getBoundingClientRect().top;
+      const topGraphHeight = Math.max(260, Math.min(window.innerHeight * 0.48, drawerTop || window.innerHeight * 0.44));
+      fitNodesToArea(visibleNodes, {
+        height: topGraphHeight,
+        centerY: topGraphHeight * 0.5,
+        paddingX: 190,
+        paddingY: 54,
+        minScale: 0.76,
+        maxScale: 0.8,
+        shiftX: -60
+      });
+      return;
+    }
+    if (document.body.classList.contains("mobile-filter-open")) {
+      fitNodesToArea(visibleNodes, {
+        centerY: window.innerHeight * 0.33,
+        paddingX: 190,
+        paddingY: 76,
+        minScale: 0.78,
+        maxScale: 0.86,
+        shiftX: -72
+      });
+    }
   }
 
   function worldFromScreen(clientX, clientY) {
@@ -222,18 +329,24 @@
   function arrangeByType() {
     const size = getSvgSize();
     const types = uniqueSorted(graphNodes.map((node) => node.type));
-    const columns = 3;
+    const columns = isMobileView() ? 2 : 3;
+    const cellWidth = size.width / (columns + 0.5);
+    const cellHeight = (isMobileView() ? 180 : 190) * state.spacing;
+    const jitter = (index, axis) => Math.sin(index * (axis === "x" ? 2.17 : 1.73)) * (axis === "x" ? 34 : 28) * state.spacing;
     types.forEach((type, typeIndex) => {
       const nodes = graphNodes.filter((node) => node.type === type);
       const col = typeIndex % columns;
       const row = Math.floor(typeIndex / columns);
       nodes.forEach((node, nodeIndex) => {
+        const angle = (nodeIndex / Math.max(1, nodes.length)) * Math.PI * 2 - Math.PI / 2;
+        const ring = 34 + Math.floor(nodeIndex / 5) * 22;
         state.nodePositions.set(node.id, {
-          x: size.width * (0.23 + col * 0.27) + nodeIndex * 42,
-          y: size.height * 0.34 + row * 130 * state.spacing
+          x: cellWidth * (col + 0.75) + Math.cos(angle) * ring * state.spacing + jitter(nodeIndex + typeIndex, "x"),
+          y: size.height * 0.24 + row * cellHeight + Math.sin(angle) * ring * state.spacing + jitter(nodeIndex + typeIndex, "y")
         });
       });
     });
+    relaxGraph(90);
   }
 
   function arrangeHierarchy() {
@@ -246,14 +359,24 @@
     ];
     layers.forEach((types, layerIndex) => {
       const nodes = graphNodes.filter((node) => types.includes(node.type));
-      const step = size.width / Math.max(2, nodes.length + 1);
+      const columns = Math.ceil(Math.sqrt(nodes.length || 1));
+      const rows = Math.ceil(nodes.length / columns);
+      const layerWidth = size.width * 0.78;
+      const startX = size.width * 0.11;
+      const rowGap = 52 * state.spacing;
+      const layerGap = (isMobileView() ? 156 : 176) * state.spacing;
       nodes.forEach((node, nodeIndex) => {
+        const col = nodeIndex % columns;
+        const row = Math.floor(nodeIndex / columns);
+        const xStep = columns <= 1 ? 0 : layerWidth / (columns - 1);
+        const rowOffset = rows > 1 ? (row - (rows - 1) / 2) * rowGap : 0;
         state.nodePositions.set(node.id, {
-          x: step * (nodeIndex + 1),
-          y: size.height * 0.26 + layerIndex * 120 * state.spacing
+          x: startX + col * xStep + (row % 2 ? xStep * 0.24 : 0),
+          y: size.height * 0.22 + layerIndex * layerGap + rowOffset
         });
       });
     });
+    relaxGraph(80);
   }
 
   function arrangeTimeline() {
@@ -723,15 +846,24 @@
     clearElement(detailView);
     if (!state.selectedId) {
       detailDrawer.classList.add("is-empty");
+      document.body.classList.remove("mobile-detail-open");
+      document.documentElement.classList.remove("mobile-detail-open-root");
+      updateMobileFilterButton();
       return;
     }
     const item = itemById.get(state.selectedId);
     if (!item) {
       detailDrawer.classList.add("is-empty");
+      document.body.classList.remove("mobile-detail-open");
+      document.documentElement.classList.remove("mobile-detail-open-root");
+      updateMobileFilterButton();
       return;
     }
 
     detailDrawer.classList.remove("is-empty");
+    document.body.classList.add("mobile-detail-open");
+    document.documentElement.classList.add("mobile-detail-open-root");
+    updateMobileFilterButton();
     const hero = makeSection("의미", "detail-hero");
     const meta = document.createElement("div");
     meta.className = "detail-meta";
@@ -813,6 +945,12 @@
     if (links.length > 0) sections.push(sourceSection);
     sections.push(topicSection, relatedSection);
     detailView.append(...sections);
+    detailDrawer.scrollTop = 0;
+    detailView.scrollTop = 0;
+    requestAnimationFrame(() => {
+      detailDrawer.scrollTop = 0;
+      detailView.scrollTop = 0;
+    });
   }
 
   function getSearchMatches() {
@@ -921,6 +1059,7 @@
     renderNodes(visibleNodes, matchedIds, relatedIds);
     renderDetail();
     renderSearchResults();
+    fitMobileContextCamera(visibleNodes);
   }
 
   function renderPeriodControls() {
@@ -1123,8 +1262,7 @@
     svg.addEventListener("pointercancel", stopPan);
     svg.addEventListener("click", (event) => {
       if (event.target === svg) {
-        state.selectedId = null;
-        render();
+        return;
       }
     });
     svg.addEventListener(
@@ -1235,10 +1373,7 @@
     });
 
     reflowButton.addEventListener("click", arrangeLayout);
-    detailClose.addEventListener("click", () => {
-      state.selectedId = null;
-      render();
-    });
+    detailClose.addEventListener("click", returnToHomeView);
     labelsButton.addEventListener("click", () => {
       state.labelsVisible = !state.labelsVisible;
       labelsButton.setAttribute("aria-pressed", String(state.labelsVisible));
@@ -1257,6 +1392,15 @@
       renderPeriodControls();
       arrangeLayout();
     });
+    if (mobileFilterButton) {
+      mobileFilterButton.addEventListener("click", () => {
+        if (state.selectedId || leftSidebar.classList.contains("is-mobile-filter-open")) {
+          returnToHomeView();
+          return;
+        }
+        setMobileFilterOpen(true);
+      });
+    }
     function updatePeriodFromInput() {
       const start = Number(periodStart.value);
       const end = Number(periodEnd.value);
@@ -1275,12 +1419,19 @@
       render();
     });
     window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && leftSidebar?.classList.contains("is-mobile-filter-open")) {
+        setMobileFilterOpen(false);
+        return;
+      }
       if (event.key === "Escape" && state.selectedId) {
         state.selectedId = null;
         render();
       }
     });
-    window.addEventListener("resize", arrangeLayout);
+    window.addEventListener("resize", () => {
+      if (!isMobileView()) setMobileFilterOpen(false);
+      arrangeLayout();
+    });
   }
 
   function init() {
@@ -1292,6 +1443,13 @@
     initControls();
     arrangeLayout();
     startIntroMotion();
+    requestAnimationFrame(() => {
+      if (isMobileView()) {
+        arrangeLayout();
+        applyMobileCameraOffset();
+      }
+    });
+    window.setTimeout(applyMobileCameraOffset, 500);
   }
 
   init();

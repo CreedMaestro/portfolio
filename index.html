@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="deploy-version" content="2026-06-12-agent-daon-header" />
     <title>Agent Daon Knowledge Graph</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=mobile-home-20260612" />
   </head>
   <body>
     <main class="graph-app" aria-label="Agent Daon knowledge graph">
@@ -73,6 +73,10 @@
           <button type="button" id="ai-answer-button" class="ai-answer-button">Agent Daon</button>
         </label>
 
+        <button type="button" id="mobile-filter-button" class="mobile-filter-button" aria-expanded="false">
+          필터
+        </button>
+
         <section id="search-results" class="search-results is-empty" aria-label="search results"></section>
 
         <section class="portfolio-brief" aria-label="portfolio summary">
@@ -123,6 +127,6 @@
 
     <script src="./data/public-data.js"></script>
     <script src="./config.js"></script>
-    <script src="./app.js" defer></script>
+    <script src="./app.js?v=mobile-home-20260612" defer></script>
   </body>
 </html>
